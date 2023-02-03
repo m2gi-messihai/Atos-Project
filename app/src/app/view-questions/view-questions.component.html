@@ -5,11 +5,19 @@
       <mat-card-header> {{ i + 1 }}){{ question.body }} </mat-card-header>
       <mat-card-content>
         <ul>
-          <li *ngFor="let choice of question.choices">
-            <input type="radio" id="choice" name="{{ question.id }}" />
-            <label for="choice">{{ choice.body }}</label>
-          </li>
+          <mat-radio-group
+            *ngFor="let choice of question.choices"
+            name="{{ question.id }}"
+            color="primary"
+          >
+            <mat-radio-button value="{choice.id}">{{
+              choice.body
+            }}</mat-radio-button>
+          </mat-radio-group>
         </ul>
+        <button mat-mini-fab color="accent">
+          <mat-icon>add</mat-icon>
+        </button>
       </mat-card-content>
     </mat-card>
   </li>

@@ -8,6 +8,9 @@ import { ViewQuestionsComponent } from './view-questions/view-questions.componen
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button'
+import { MatRadioModule } from '@angular/material/radio'
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     NoopAnimationsModule,
     MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatRadioModule
 
   ],
   providers: [],
