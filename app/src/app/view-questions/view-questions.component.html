@@ -1,0 +1,12 @@
+<h1>Questions</h1>
+<ol>
+  <li *ngFor="let question of questionList; index as i">
+    {{ question.body }}
+    <ul>
+      <li *ngFor="let choice of question.choices">
+        <input type="radio" id="choice" name="choice" />
+        <label for="choice">{{ choice.body }}</label>
+      </li>
+    </ul>
+  </li>
+</ol>

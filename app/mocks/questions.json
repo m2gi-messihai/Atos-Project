@@ -1,0 +1,48 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "body": "Which of the following processes involves determining the policies, procedures, and documentation that will be used for planning, executing, and controlling the project schedule?",
+      "choices": [
+        {
+          "id": 1,
+          "body": "planning schedule managment"
+        },
+        {
+          "id": 2,
+          "body": "defining activities"
+        },
+        {
+          "id": 3,
+          "body": "estimating activity resources"
+        },
+        {
+          "id": 4,
+          "body": "activity sequencing"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "body": "Which of the following processes involves determining the policies, procedures, and documentation that will be used for planning, executing, and controlling the project schedule?",
+      "choices": [
+        {
+          "id": 1,
+          "body": "planning schedule managment"
+        },
+        {
+          "id": 2,
+          "body": "defining activities"
+        },
+        {
+          "id": 3,
+          "body": "estimating activity resources"
+        },
+        {
+          "id": 4,
+          "body": "activity sequencing"
+        }
+      ]
+    }
+  ]
+}
