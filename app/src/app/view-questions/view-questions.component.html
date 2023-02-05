@@ -15,7 +15,8 @@
             }}</mat-radio-button>
           </mat-radio-group>
         </ul>
-        <button mat-mini-fab color="accent">
+
+        <button mat-mini-fab color="accent" (click)="addAnswer({question.id})">
           <mat-icon>add</mat-icon>
         </button>
       </mat-card-content>

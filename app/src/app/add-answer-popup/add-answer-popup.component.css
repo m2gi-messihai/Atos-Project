@@ -1,0 +1,4 @@
+.poppupContainer {
+    display: flex;
+    flex-direction: column;
+}

@@ -11,12 +11,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatRadioModule } from '@angular/material/radio'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AddQuestionComponent,
-    ViewQuestionsComponent
+    ViewQuestionsComponent,
+    AddAnswerPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,10 @@ import { MatRadioModule } from '@angular/material/radio'
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
 
   ],
   providers: [],
