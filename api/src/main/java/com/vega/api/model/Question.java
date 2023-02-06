@@ -3,17 +3,19 @@ package com.vega.api.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+import org.bson.types.ObjectId;
+
+@Document(collection = "Question")
 @Getter
 @Setter
 @ToString
@@ -21,29 +23,39 @@ import lombok.ToString;
 
 public class Question {
     @Id
-    @GeneratedValue
-    private Long id;
+    private ObjectId id;
+    @Field
     @NonNull
     private String name;
+    @Field
     @NonNull
     private String level_id;
+    @Field
     @NonNull
     private String type_id;
+    @Field
     @NonNull
     private String category;
+    @Field
     @NonNull
     private String sub_category;
+    @Field
     @NonNull
     private String mark;
+    @Field
     @NonNull
     private String expected_time;
+    @Field
     @NonNull
     private String correct_answer_ids[];
+    @Field
     @NonNull
     private String created_by;
+    @Field
     @NonNull
     private String created_at;
-    @OneToMany(mappedBy = "question")
+    @Field
+    @NonNull
     private List<Answer> answers = new ArrayList<>();
 
 }
