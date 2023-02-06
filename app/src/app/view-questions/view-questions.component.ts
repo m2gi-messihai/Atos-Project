@@ -16,7 +16,7 @@ export class ViewQuestionsComponent implements OnInit {
   questionList: Question[] | null = null;
   choices: Answer[] | null = null;
   constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
-  addAnswer(questionID: string) {
+  addAnswer() {
     const dialogRef = this.dialog.open(AddAnswerPopupComponent)
   }
 

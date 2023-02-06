@@ -2,21 +2,20 @@
 <ul>
   <li *ngFor="let question of questionList; index as i">
     <mat-card>
-      <mat-card-header> {{ i + 1 }}){{ question.body }} </mat-card-header>
+      <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
       <mat-card-content>
         <ul>
           <mat-radio-group
-            *ngFor="let choice of question.choices"
+            *ngFor="let answer of question.answers"
             name="{{ question.id }}"
-            color="primary"
           >
-            <mat-radio-button value="{choice.id}">{{
-              choice.body
+            <mat-radio-button value="{answer.id}">{{
+              answer.body
             }}</mat-radio-button>
           </mat-radio-group>
         </ul>
 
-        <button mat-mini-fab color="accent" (click)="addAnswer({question.id})">
+        <button mat-mini-fab color="accent" (click)="addAnswer()">
           <mat-icon>add</mat-icon>
         </button>
       </mat-card-content>

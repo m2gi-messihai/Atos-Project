@@ -12,22 +12,26 @@
       "correct-answer-id": 2,
       "created-by": "ilaria refaat",
       "created-at": "20/12/2021",
-      "choices": [
+      "answers": [
         {
           "id": 1,
-          "body": "planning schedule managment"
+          "body": "planning schedule managment",
+          "description": "choice1Description"
         },
         {
           "id": 2,
-          "body": "defining activities"
+          "body": "defining activities",
+          "description": "choice1Description"
         },
         {
           "id": 3,
-          "body": "estimating activity resources"
+          "body": "estimating activity resources",
+          "description": "choice1Description"
         },
         {
           "id": 4,
-          "body": "activity sequencing"
+          "body": "activity sequencing",
+          "description": "choice1Description"
         }
       ]
     },
@@ -43,22 +47,26 @@
       "correct-answer-id": 2,
       "created-by": "ilaria refaat",
       "created-at": "20/12/2021",
-      "choices": [
+      "answers": [
         {
           "id": 1,
-          "body": "planning schedule managment"
+          "body": "planning schedule managment",
+          "description": "choice1Description"
         },
         {
           "id": 2,
-          "body": "defining activities"
+          "body": "defining activities",
+          "description": "choice1Description"
         },
         {
           "id": 3,
-          "body": "estimating activity resources"
+          "body": "estimating activity resources",
+          "description": "choice1Description"
         },
         {
           "id": 4,
-          "body": "activity sequencing"
+          "body": "activity sequencing",
+          "description": "choice1Description"
         }
       ]
     }
