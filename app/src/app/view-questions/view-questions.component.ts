@@ -19,7 +19,9 @@ export class ViewQuestionsComponent implements OnInit {
   addAnswer() {
     const dialogRef = this.dialog.open(AddAnswerPopupComponent)
   }
+  addQuestion() {
 
+  }
   ngOnInit(): void {
     this.questionService.fetchQuestions().subscribe(data => {
       this.questionList = data;
@@ -28,3 +30,8 @@ export class ViewQuestionsComponent implements OnInit {
   }
 
 }
+//TODO
+//Rename interfaces to models
+//Add client folder to do api calls 
+//service calls the client
+//SOLID revision

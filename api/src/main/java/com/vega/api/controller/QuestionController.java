@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.vega.api.model.Question;
 import com.vega.api.repository.QuestionRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/questions")
 public class QuestionController {
     private QuestionRepository questionRepository;
@@ -35,7 +37,7 @@ public class QuestionController {
     }
 
     @PostMapping("")
-    public Question createQuestion(@ModelAttribute Question question) {
+    public Question createQuestion(@RequestBody Question question) {
         return questionRepository.save(question);
     }
 
@@ -45,3 +47,17 @@ public class QuestionController {
     }
 
 }
+// TODO
+// add data transfer object
+// add services
+// Field annotation in entities
+// Search database constraints using spring data /nonnull annotation in entities
+// RequestBody and mosel attributes
+// Spring Feature and lauching steps (dependency injection...)
+// mongo template
+// ORM concept
+// spring core
+// servelet
+// database
+// singleton design pattern
+// MVC principle

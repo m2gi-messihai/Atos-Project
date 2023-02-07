@@ -1,5 +1,5 @@
 export interface Answer {
     id: String;
-    body: String;
+    name: String;
     description: String;
 }

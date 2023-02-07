@@ -10,7 +10,7 @@
             name="{{ question.id }}"
           >
             <mat-radio-button value="{answer.id}">{{
-              answer.body
+              answer.name
             }}</mat-radio-button>
           </mat-radio-group>
         </ul>
@@ -22,3 +22,12 @@
     </mat-card>
   </li>
 </ul>
+<button
+  mat-button
+  color="primary"
+  (click)="addQuestion()"
+  routerLink="/questionform"
+  routerLinkActive="active"
+>
+  Add Question
+</button>

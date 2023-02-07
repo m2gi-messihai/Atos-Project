@@ -1,6 +1,5 @@
 package com.vega.api.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -24,38 +23,37 @@ import org.bson.types.ObjectId;
 public class Question {
     @Id
     private ObjectId id;
-    @Field
     @NonNull
     private String name;
-    @Field
+    @Field("level_id")
     @NonNull
-    private String level_id;
-    @Field
+    private String levelId;
+    @Field("type_id")
     @NonNull
-    private String type_id;
+    private String typeId;
     @Field
     @NonNull
     private String category;
-    @Field
+    @Field("sub_category")
     @NonNull
-    private String sub_category;
+    private String subCategory;
     @Field
     @NonNull
     private String mark;
+    @Field("expected_time")
+    @NonNull
+    private String expectedTime;
     @Field
     @NonNull
-    private String expected_time;
+    private String correctAnswerIds[];
+    @Field("created_by")
+    @NonNull
+    private String createdBy;
     @Field
     @NonNull
-    private String correct_answer_ids[];
+    private String createdAt;
     @Field
     @NonNull
-    private String created_by;
-    @Field
-    @NonNull
-    private String created_at;
-    @Field
-    @NonNull
-    private List<Answer> answers = new ArrayList<>();
+    private List<Answer> answers;
 
 }

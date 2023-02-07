@@ -12,7 +12,7 @@ export class QuestionService {
   fetchQuestions() {
     return this.http
       .get<{ [key: string]: Question }>(
-        'https://quizzes-app-demo-default-rtdb.firebaseio.com/questions.json'
+        'http://localhost:8080/questions'
       )
       .pipe(
         map((res) => {
