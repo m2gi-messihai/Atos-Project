@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Answer } from '../interfaces/Answer';
-import { Question } from '../interfaces/Question';
+import { Answer } from '../models/Answer';
+import { Question } from '../models/Question';
 import { AnswerService } from '../services/answer.service';
 import { QuestionService } from '../services/question.service';
 import { MatDialog } from '@angular/material/dialog';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Answer } from '../interfaces/Answer';
+import { Answer } from '../models/Answer';
 
 @Component({
   selector: 'app-add-answer-popup',

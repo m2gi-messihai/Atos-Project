@@ -50,9 +50,8 @@ public class QuestionController {
 // TODO
 // add data transfer object
 // add services
-// Field annotation in entities
 // Search database constraints using spring data /nonnull annotation in entities
-// RequestBody and mosel attributes
+// RequestBody and model attributes
 // Spring Feature and lauching steps (dependency injection...)
 // mongo template
 // ORM concept
