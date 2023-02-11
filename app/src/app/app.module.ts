@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.component'
+import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.com
     MatRadioModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
 
   ],
   providers: [],
