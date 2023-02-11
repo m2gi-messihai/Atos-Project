@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from '../models/Answer';
 import { Question } from '../models/Question';
-import { AnswerService } from '../services/answer.service';
+
 import { QuestionService } from '../services/question.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAnswerPopupComponent } from '../add-answer-popup/add-answer-popup.component';
@@ -14,12 +14,14 @@ import { AddAnswerPopupComponent } from '../add-answer-popup/add-answer-popup.co
 })
 export class ViewQuestionsComponent implements OnInit {
   questionList: Question[] | null = null;
-  choices: Answer[] | null = null;
-  constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
-  addAnswer() {
-    const dialogRef = this.dialog.open(AddAnswerPopupComponent)
-  }
-  addQuestion() {
+  answers: Answer[] | null = null;
+  constructor(public questionService: QuestionService, private dialog: MatDialog) { }
+  answerForm(id: String) {
+    const dialogRef = this.dialog.open(AddAnswerPopupComponent);
+    dialogRef.afterClosed().subscribe(item => {
+      console.log(item);
+
+    })
 
   }
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class ViewQuestionsComponent implements OnInit {
       this.questionList = data;
 
     });
+  }
+  deleteQuestion(id: String) {
+    this.questionService.deleteQuestion(id)
+
   }
 
 }

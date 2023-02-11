@@ -11,3 +11,8 @@ mat-radio-group {
     flex-direction: column;
     margin: 5px;
 }
+
+.questionOptions {
+    display: flex;
+    justify-content: space-between;
+}

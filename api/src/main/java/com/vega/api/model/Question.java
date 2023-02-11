@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import org.bson.types.ObjectId;
-
 @Document(collection = "Question")
 @Getter
 @Setter
@@ -23,7 +21,7 @@ import org.bson.types.ObjectId;
 
 public class Question {
     @Id
-    private ObjectId id;
+    private String id;
     @NonNull
     private String name;
     @Field("level_id")
@@ -33,17 +31,18 @@ public class Question {
     @NonNull
     private String typeId;
     @NonNull
+    private String key;
+    @NonNull
     private String category;
     @Field("sub_category")
     @NonNull
     private String subCategory;
-    @Field
     @NonNull
     private String mark;
     @Field("expected_time")
     @NonNull
     private String expectedTime;
-    @Field
+    @Field("correct_answer_ids")
     @NonNull
     private String correctAnswerIds[];
     @Field("created_by")
