@@ -2,7 +2,9 @@
 <ul>
   <li *ngFor="let question of questionList; index as i">
     <mat-card>
-      <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
+      <mat-card-header>
+        {{ i + 1 }}){{ question.name }} {{ question.key }}
+      </mat-card-header>
       <mat-card-content>
         <ul>
           <mat-radio-group
@@ -14,10 +16,23 @@
             }}</mat-radio-button>
           </mat-radio-group>
         </ul>
-
-        <button mat-mini-fab color="accent" (click)="addAnswer()">
-          <mat-icon>add</mat-icon>
-        </button>
+        <div class="questionOptions">
+          <button
+            mat-mini-fab
+            color="accent"
+            (click)="answerForm(question.key)"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="warn"
+            class="deleteButton"
+            (click)="deleteQuestion(question.key)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </mat-card-content>
     </mat-card>
   </li>
@@ -25,7 +40,6 @@
 <button
   mat-button
   color="primary"
-  (click)="addQuestion()"
   routerLink="/questionform"
   routerLinkActive="active"
 >
