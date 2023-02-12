@@ -14,14 +14,15 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
-import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.component'
+import { MatCheckboxModule } from '@angular/material/checkbox'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddQuestionComponent,
     ViewQuestionsComponent,
-    AddAnswerPopupComponent
+
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,8 @@ import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.com
     MatRadioModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
 
   ],
   providers: [],

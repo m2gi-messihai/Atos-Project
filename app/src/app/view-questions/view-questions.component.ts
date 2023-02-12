@@ -4,7 +4,7 @@ import { Question } from '../models/Question';
 import { AnswerService } from '../services/answer.service';
 import { QuestionService } from '../services/question.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddAnswerPopupComponent } from '../add-answer-popup/add-answer-popup.component';
+
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ViewQuestionsComponent implements OnInit {
   choices: Answer[] | null = null;
   constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
   addAnswer() {
-    const dialogRef = this.dialog.open(AddAnswerPopupComponent)
+
   }
   addQuestion() {
 
@@ -32,6 +32,6 @@ export class ViewQuestionsComponent implements OnInit {
 }
 //TODO
 //Rename interfaces to models
-//Add client folder to do api calls 
+//Add client folder to do api calls
 //service calls the client
 //SOLID revision
