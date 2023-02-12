@@ -14,7 +14,8 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
-import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AnswerFormComponent } from './answer-form/answer-form.component'
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     AppComponent,
     AddQuestionComponent,
     ViewQuestionsComponent,
+    AnswerFormComponent,
 
   ],
   imports: [
