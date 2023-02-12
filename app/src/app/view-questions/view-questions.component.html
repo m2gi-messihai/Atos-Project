@@ -14,6 +14,7 @@
             }}</mat-radio-button>
           </mat-radio-group>
         </ul>
+<<<<<<< HEAD
         <div class="questionOptions">
           <button
             mat-mini-fab
@@ -31,6 +32,16 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
+=======
+
+        <button mat-mini-fab color="accent" (click)="addAnswer(i)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <app-answer-form
+          *ngIf="showBlock[i]"
+          [questionId]="question.id"
+        ></app-answer-form>
+>>>>>>> add-answer-feature
       </mat-card-content>
     </mat-card>
   </li>

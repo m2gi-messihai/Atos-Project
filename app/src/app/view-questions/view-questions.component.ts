@@ -4,7 +4,7 @@ import { Question } from '../models/Question';
 
 import { QuestionService } from '../services/question.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddAnswerPopupComponent } from '../add-answer-popup/add-answer-popup.component';
+
 
 
 @Component({
@@ -14,6 +14,7 @@ import { AddAnswerPopupComponent } from '../add-answer-popup/add-answer-popup.co
 })
 export class ViewQuestionsComponent implements OnInit {
   questionList: Question[] | null = null;
+<<<<<<< HEAD
   answers: Answer[] | null = null;
   constructor(public questionService: QuestionService, private dialog: MatDialog) { }
   answerForm(id: String) {
@@ -22,6 +23,24 @@ export class ViewQuestionsComponent implements OnInit {
       console.log(item);
 
     })
+=======
+  choices: Answer[] | null = null;
+  showBlock: Boolean[] = new Array(this.questionList?.length).fill(false);
+
+  constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
+
+  addAnswer(i: number) {
+
+    if (this.showBlock[i]) {
+      this.showBlock[i] = false
+    }
+    else {
+      this.showBlock[i] = true;
+    }
+
+  }
+  addQuestion() {
+>>>>>>> add-answer-feature
 
   }
   ngOnInit(): void {
@@ -38,6 +57,6 @@ export class ViewQuestionsComponent implements OnInit {
 }
 //TODO
 //Rename interfaces to models
-//Add client folder to do api calls 
+//Add client folder to do api calls
 //service calls the client
 //SOLID revision
