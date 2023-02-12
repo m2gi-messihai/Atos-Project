@@ -1,4 +1,4 @@
-<form class="answerForm">
+<div class="answerForm">
   <mat-form-field appearance="fill">
     <mat-label>Answer</mat-label>
     <input matInput />
@@ -8,5 +8,7 @@
     <textarea matInput></textarea>
   </mat-form-field>
   <mat-checkbox>Is Correct?</mat-checkbox>
-  <button mat-raised-button color="primary" type="submit">Save Answer</button>
-</form>
+  <button mat-raised-button color="primary" (click)="onSubmit()">
+    Save Answer
+  </button>
+</div>

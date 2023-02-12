@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-answer-form',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./answer-form.component.css']
 })
 export class AnswerFormComponent implements OnInit {
+  @Input() questionId: String = "";
 
-  constructor() { }
+  constructor(public questionService: QuestionService) { }
 
   ngOnInit(): void {
+  }
+  onSubmit() {
+    // this.questionService.addAnswer
+    console.log(this.questionId);
+    return false;
   }
 
 }

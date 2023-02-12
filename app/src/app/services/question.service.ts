@@ -26,4 +26,7 @@ export class QuestionService {
         })
       );
   }
+  addAnswer(question: Question) {
+    return this.http.patch<Question>(`http://localhost:8080/questions/${question.id}`, question.answers)
+  }
 }
