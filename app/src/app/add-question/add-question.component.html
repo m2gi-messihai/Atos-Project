@@ -1,1 +1,63 @@
-<p>add-question works!</p>
+<h1>Create new question</h1>
+<mat-card>
+  <form
+    class="createQuestionForm"
+    [formGroup]="questionForm"
+    (ngSubmit)="onSubmit(questionForm.value)"
+  >
+    <mat-form-field>
+      <mat-label>Question body</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="levelId">
+        <mat-option *ngFor="let level of levels" [value]="level.id">
+          {{ level.body }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="typeId">
+        <mat-option *ngFor="let type of types" [value]="type.id">
+          {{ type.body }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <input matInput formControlName="category" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sub-Category</mat-label>
+      <input matInput formControlName="subCategory" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mark</mat-label>
+      <input matInput formControlName="mark" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Expected Time</mat-label>
+      <input matInput formControlName="expectedTime" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Created by</mat-label>
+      <input matInput formControlName="createdBy" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Created At</mat-label>
+      <input matInput formControlName="createdAt" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="submitButton"
+      type="submit"
+    >
+      Create Question
+    </button>
+  </form>
+</mat-card>
