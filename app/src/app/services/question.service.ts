@@ -28,17 +28,21 @@ export class QuestionService {
         })
       );
   }
-  addQuestion(question: Question) {
-    return this.http.post<[key: string]>(
-      this.API, question
-    ).subscribe((res) => {
-      console.log(res)
-    })
-  }
+
   deleteQuestion(key: String) {
     console.log(key);
     return this.http.delete(this.API + "/" + key).subscribe();
 
+  }
+  createQuestion(question: Question) {
+    this.http
+      .post<{ name: string }>(
+        this.API,
+        question
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
   // addAnswer(answer: Answer) {
   //   return this.http.patch<[key: string]>(

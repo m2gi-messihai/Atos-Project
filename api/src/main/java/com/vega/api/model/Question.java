@@ -20,7 +20,7 @@ import lombok.ToString;
 @NoArgsConstructor
 
 public class Question {
-    @Id
+
     private String id;
     @NonNull
     private String name;
@@ -30,6 +30,7 @@ public class Question {
     @Field("type_id")
     @NonNull
     private String typeId;
+    @Id
     @NonNull
     private String key;
     @NonNull
