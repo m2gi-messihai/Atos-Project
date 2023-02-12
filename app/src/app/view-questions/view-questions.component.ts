@@ -15,16 +15,18 @@ import { MatDialog } from '@angular/material/dialog';
 export class ViewQuestionsComponent implements OnInit {
   questionList: Question[] | null = null;
   choices: Answer[] | null = null;
-  showBlock = false;
+  showBlock: Boolean[] = new Array(this.questionList?.length).fill(false);
+
   constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
-  addAnswer() {
-    if (this.showBlock) {
-      this.showBlock = false
+
+  addAnswer(i: number) {
+
+    if (this.showBlock[i]) {
+      this.showBlock[i] = false
     }
     else {
-      this.showBlock = true;
+      this.showBlock[i] = true;
     }
-
 
   }
   addQuestion() {
