@@ -14,20 +14,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ViewQuestionsComponent implements OnInit {
   questionList: Question[] | null = null;
-<<<<<<< HEAD
   answers: Answer[] | null = null;
-  constructor(public questionService: QuestionService, private dialog: MatDialog) { }
-  answerForm(id: String) {
-    const dialogRef = this.dialog.open(AddAnswerPopupComponent);
-    dialogRef.afterClosed().subscribe(item => {
-      console.log(item);
-
-    })
-=======
-  choices: Answer[] | null = null;
+  constructor(public questionService: QuestionService) { }
   showBlock: Boolean[] = new Array(this.questionList?.length).fill(false);
-
-  constructor(public questionService: QuestionService, public answerService: AnswerService, private dialog: MatDialog) { }
 
   addAnswer(i: number) {
 
@@ -40,7 +29,7 @@ export class ViewQuestionsComponent implements OnInit {
 
   }
   addQuestion() {
->>>>>>> add-answer-feature
+
 
   }
   ngOnInit(): void {

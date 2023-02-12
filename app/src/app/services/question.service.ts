@@ -28,7 +28,6 @@ export class QuestionService {
         })
       );
   }
-<<<<<<< HEAD
 
   deleteQuestion(key: String) {
     console.log(key);
@@ -45,16 +44,9 @@ export class QuestionService {
         console.log(res);
       });
   }
-  // addAnswer(answer: Answer) {
-  //   return this.http.patch<[key: string]>(
-  //     'http://localhost:8080/questions/${id}', answer
-  //   ).subscribe((res) => {
-  //     console.log(res)
-  //   })
-  // }
-=======
+
   addAnswer(question: Question) {
     return this.http.patch<Question>(`http://localhost:8080/questions/${question.id}`, question.answers)
   }
->>>>>>> add-answer-feature
+
 }

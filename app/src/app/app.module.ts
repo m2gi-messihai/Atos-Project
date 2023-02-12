@@ -15,14 +15,10 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
-<<<<<<< HEAD
-import { AddAnswerPopupComponent } from './add-answer-popup/add-answer-popup.component'
-import { MatSelectModule } from '@angular/material/select'
-=======
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AnswerFormComponent } from './answer-form/answer-form.component'
+import { MatSelectModule } from '@angular/material/select'
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
->>>>>>> add-answer-feature
 
 @NgModule({
   declarations: [
@@ -44,13 +40,10 @@ import { AnswerFormComponent } from './answer-form/answer-form.component'
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-<<<<<<< HEAD
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
-=======
+    ReactiveFormsModule,
     MatCheckboxModule
->>>>>>> add-answer-feature
 
   ],
   providers: [],
