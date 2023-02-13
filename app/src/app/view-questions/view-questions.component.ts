@@ -3,7 +3,7 @@ import { Answer } from '../models/Answer';
 import { Question } from '../models/Question';
 
 import { QuestionService } from '../services/question.service';
-import { MatDialog } from '@angular/material/dialog';
+
 
 
 
@@ -28,24 +28,20 @@ export class ViewQuestionsComponent implements OnInit {
     }
 
   }
-  addQuestion() {
 
-
-  }
   ngOnInit(): void {
     this.questionService.fetchQuestions().subscribe(data => {
       this.questionList = data;
 
     });
   }
+  // ngOnInit(): void {
+  //   this.questionService.fetchQuestions();
+  // }
   deleteQuestion(id: String) {
     this.questionService.deleteQuestion(id)
 
   }
 
 }
-//TODO
-//Rename interfaces to models
-//Add client folder to do api calls
-//service calls the client
-//SOLID revision
+

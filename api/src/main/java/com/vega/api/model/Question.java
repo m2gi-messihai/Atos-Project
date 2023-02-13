@@ -41,7 +41,6 @@ public class Question {
     @NonNull
     private String mark;
     @Field("expected_time")
-    @NonNull
     private String expectedTime;
     @Field("correct_answer_ids")
     @NonNull
@@ -52,7 +51,6 @@ public class Question {
     @Field("created_at")
     @NonNull
     private String createdAt;
-    @NonNull
-    private List<Answer> answers;
+    private Answer[] answers;
 
 }

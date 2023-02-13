@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { Client } from '../clients/client';
 import { Answer } from '../models/Answer';
 import { Question } from '../models/Question';
 
@@ -8,8 +9,8 @@ import { Question } from '../models/Question';
   providedIn: 'root'
 })
 export class QuestionService {
-  API = 'http://localhost:8080/questions';
 
+  API = 'http://localhost:8080/questions';
   constructor(private http: HttpClient) { }
   fetchQuestions() {
     return this.http
@@ -29,9 +30,9 @@ export class QuestionService {
       );
   }
 
-  deleteQuestion(key: String) {
-    console.log(key);
-    return this.http.delete(this.API + "/" + key).subscribe();
+  deleteQuestion(id: String) {
+    console.log(id);
+    return this.http.delete(this.API + "/" + id).subscribe();
 
   }
   createQuestion(question: Question) {
@@ -45,8 +46,12 @@ export class QuestionService {
       });
   }
 
-  addAnswer(question: Question) {
-    return this.http.patch<Question>(`http://localhost:8080/questions/${question.id}`, question.answers)
+  addAnswer(questionId: String, answers: Answer[]) {
+
+    return this.http.patch<Question>(this.API + '/' + questionId, answers).subscribe((res) => {
+      console.log(res);
+
+    })
   }
 
 }

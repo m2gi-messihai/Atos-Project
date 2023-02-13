@@ -28,13 +28,13 @@ export class AddQuestionComponent implements OnInit {
       mark: ['', [Validators.required]],
       expectedTime: ['', [Validators.required]],
       createdBy: ['', [Validators.required]],
-      createdAt: ['', [Validators.required]]
+      createdAt: ['', [Validators.required]],
+      // correctAnswerIds: [''],
+      // answers: ['']
 
     }
     )
   }
-  selectedLevel: string = '';
-  selectedType: string = '';
 
   levels: Level[] = [
     { id: '1', body: 'level1' },

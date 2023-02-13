@@ -8,16 +8,19 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vega.api.model.Answer;
 import com.vega.api.model.Question;
 import com.vega.api.services.QuestionService;
 
@@ -52,8 +55,8 @@ public class QuestionController {
     }
 
     @PatchMapping("/{id}")
-    public Question editQuestion(@PathVariable ObjectId id, Map<String, Object> fields) {
-        return questionService.editQuestion(id, fields);
+    public Question editQuestion(@PathVariable String id, @RequestBody Answer[] answers) {
+        return questionService.editQuestion(id, answers);
 
     }
 

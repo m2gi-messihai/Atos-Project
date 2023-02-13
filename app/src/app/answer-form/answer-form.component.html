@@ -1,14 +1,16 @@
-<div class="answerForm">
+<form
+  class="answerForm"
+  [formGroup]="answerForm"
+  (ngSubmit)="onSubmit(answerForm.value)"
+>
   <mat-form-field appearance="fill">
     <mat-label>Answer</mat-label>
-    <input matInput />
+    <input matInput formControlName="name" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput formControlName="description"></textarea>
   </mat-form-field>
   <mat-checkbox>Is Correct?</mat-checkbox>
-  <button mat-raised-button color="primary" (click)="onSubmit()">
-    Save Answer
-  </button>
-</div>
+  <button mat-raised-button color="primary" type="submit">Save Answer</button>
+</form>

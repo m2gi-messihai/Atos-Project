@@ -4,15 +4,8 @@
     <mat-card>
       <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
       <mat-card-content>
-        <ul>
-          <mat-radio-group
-            *ngFor="let answer of question.answers"
-            name="{{ question.id }}"
-          >
-            <mat-radio-button value="{answer.id}">{{
-              answer.name
-            }}</mat-radio-button>
-          </mat-radio-group>
+        <ul *ngFor="let answer of question.answers; index as j">
+          <li>{{ j + 1 }}){{ answer.name }}</li>
         </ul>
         <div class="questionOptions">
           <button mat-mini-fab color="accent" (click)="addAnswer(i)">
@@ -22,7 +15,7 @@
             mat-mini-fab
             color="warn"
             class="deleteButton"
-            (click)="deleteQuestion(question.id)"
+            (click)="deleteQuestion(question.key)"
           >
             <mat-icon>delete</mat-icon>
           </button>
@@ -30,7 +23,7 @@
 
         <app-answer-form
           *ngIf="showBlock[i]"
-          [questionId]="question.id"
+          [question]="question"
         ></app-answer-form>
       </mat-card-content>
     </mat-card>
