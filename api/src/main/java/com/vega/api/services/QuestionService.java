@@ -1,23 +1,18 @@
 package com.vega.api.services;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
+
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
 import com.vega.api.model.Answer;
 import com.vega.api.model.Question;
 import com.vega.api.repository.QuestionRepository;
-
-import lombok.val;
 
 @Service
 public class QuestionService {

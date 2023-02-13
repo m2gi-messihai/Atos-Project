@@ -23,7 +23,7 @@ export class AnswerFormComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-    console.log(this.question)
+
   }
   onSubmit(answer: Answer) {
 
