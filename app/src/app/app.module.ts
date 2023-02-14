@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input'
 import { AnswerFormComponent } from './answer-form/answer-form.component'
 import { MatSelectModule } from '@angular/material/select'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule
 
   ],
   providers: [],

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { Client } from '../clients/client';
 import { Answer } from '../models/Answer';
+import { GetAllQuestionsRsponseDto } from '../models/GetAllQuestionsResponseDto';
 import { Question } from '../models/Question';
 
 @Injectable({
@@ -28,6 +29,11 @@ export class QuestionService {
           return questions;
         })
       );
+  }
+  fetchPaginatedQuestions(offset: number, pageSize: number) {
+    return this.http.get<GetAllQuestionsRsponseDto>(
+      this.API + '?pageNumber=' + offset + '&pageSize=' + pageSize
+    );
   }
 
   deleteQuestion(id: String) {

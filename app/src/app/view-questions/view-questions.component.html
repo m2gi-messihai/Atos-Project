@@ -1,39 +1,51 @@
 <h1>Questions</h1>
-<ul>
-  <li *ngFor="let question of questionList; index as i">
-    <mat-card>
-      <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
-      <mat-card-content>
-        <ul *ngFor="let answer of question.answers; index as j">
-          <li>{{ j + 1 }}){{ answer.name }}</li>
-        </ul>
-        <div class="questionOptions">
-          <button mat-mini-fab color="accent" (click)="addAnswer(i)">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button
-            mat-mini-fab
-            color="warn"
-            class="deleteButton"
-            (click)="deleteQuestion(question.key)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+<div *ngIf="getAllQuestionsResponseDto">
+  <ul>
+    <li
+      *ngFor="let question of getAllQuestionsResponseDto.questions; index as i"
+    >
+      <mat-card>
+        <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
+        <mat-card-content>
+          <ul *ngFor="let answer of question.answers; index as j">
+            <li>{{ j + 1 }}){{ answer.name }}</li>
+          </ul>
+          <div class="questionOptions">
+            <button mat-mini-fab color="accent" (click)="addAnswer(i)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              color="warn"
+              class="deleteButton"
+              (click)="deleteQuestion(question.key)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
 
-        <app-answer-form
-          *ngIf="showBlock[i]"
-          [question]="question"
-        ></app-answer-form>
-      </mat-card-content>
-    </mat-card>
-  </li>
-</ul>
-<button
-  mat-button
-  color="primary"
-  routerLink="/questionform"
-  routerLinkActive="active"
->
-  Add Question
-</button>
+          <app-answer-form
+            *ngIf="showBlock[i]"
+            [question]="question"
+          ></app-answer-form>
+        </mat-card-content>
+      </mat-card>
+    </li>
+  </ul>
+  <button
+    mat-button
+    color="primary"
+    routerLink="/questionform"
+    routerLinkActive="active"
+  >
+    Add Question
+  </button>
+  <mat-paginator
+    [length]="getAllQuestionsResponseDto.totalQuestions"
+    [pageSize]="currentPageSize"
+    [pageSizeOptions]="pageSize"
+    aria-label="Select page"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

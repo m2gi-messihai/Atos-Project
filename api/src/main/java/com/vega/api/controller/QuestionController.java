@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vega.api.dto.GetAllQuestionsResponseDto;
 import com.vega.api.model.Answer;
 import com.vega.api.model.Question;
 import com.vega.api.services.QuestionService;
@@ -32,17 +35,17 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("")
-    public List<Question> list() {
-        return questionService.list();
-    }
+    // @GetMapping("")
+    // public List<Question> list() {
+    // return questionService.list();
+    // }
 
     @GetMapping("/{id}")
     public Optional<Question> read(@PathVariable ObjectId id) {
         return questionService.read(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     public Question createQuestion(@RequestBody Question question) {
         return questionService.createQuestion(question);
     }
@@ -55,27 +58,25 @@ public class QuestionController {
     }
 
     @PatchMapping("/{id}")
-    public Question editQuestion(@PathVariable String id, @RequestBody Answer[] answers) {
-        return questionService.editQuestion(id, answers);
+    public Question addNewAnswer(@PathVariable String id, @RequestBody Answer[] answers) {
+        return questionService.addNewAnswer(id, answers);
 
     }
 
+    // @GetMapping("")
+    // public Page<Question> findProductsWithPagination(@RequestParam String offset,
+    // @RequestParam String pageSize) {
+
+    // return questionService.findProductsWithPagination(offset, pageSize);
+
+    // }
+    @GetMapping
+    public GetAllQuestionsResponseDto getAllPosts(
+            @RequestParam(value = "pageNumber") Integer pageNumber,
+            @RequestParam(value = "pageSize") Integer pageSize
+
+    ) {
+        return questionService.getPaginatedQuestions(pageNumber, pageSize);
+    }
+
 }
-// TODO
-// add data transfer object
-// add services
-// Search database constraints using spring data /nonnull annotation in entities
-// RequestBody and model attributes
-// Spring Feature and lauching steps (dependency injection...)
-// mongo template
-// ORM concept
-// spring core
-// servelet
-// database
-// singleton design pattern
-// MVC principle
-// create new question
-// list question pagination
-// add answer for existing question
-// rest api methods (ex:patch)
-// URl configuarable
