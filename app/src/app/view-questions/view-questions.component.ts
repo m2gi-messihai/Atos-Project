@@ -12,50 +12,41 @@ import { QuestionService } from '../services/question.service';
   styleUrls: ['./view-questions.component.css']
 })
 export class ViewQuestionsComponent implements OnInit {
-  questionList: Question[] | null = null;
-  answers: Answer[] | null = null;
-  getAllQuestionsResponseDto?: GetAllQuestionsRsponseDto;
+  questions: Question[] | null = null;
+  totalQuestionsCount: number = 0;
   constructor(public questionService: QuestionService) { }
-  showBlock: Boolean[] = new Array(this.questionList?.length).fill(false);
-  pageSlice = this.questionList?.slice(0.3);
   pageSize: number[] = [3, 6, 9]
   currentPageSize: number = 3;
   pageNumber: number = 0;
 
+  editingQuestionKey: string | null = null
 
-
-  addAnswer(i: number) {
-
-    if (this.showBlock[i]) {
-      this.showBlock[i] = false
-    }
-    else {
-      this.showBlock[i] = true;
-    }
-
+  addAnswer(key: string) {
+    this.editingQuestionKey = key;
   }
   onPageChange(event: PageEvent) {
-    console.log(event)
-    this.currentPageSize = event.pageSize;
-    this.pageNumber = event.pageIndex;
-    this.questionService.fetchPaginatedQuestions(this.pageNumber, this.currentPageSize).subscribe(data => {
-      this.getAllQuestionsResponseDto = data
-      console.log(this.getAllQuestionsResponseDto);
-
-    })
+    this.fetchQuestions(event.pageIndex, event.pageSize)
 
   }
 
   ngOnInit(): void {
-
-    this.questionService.fetchPaginatedQuestions(this.pageNumber, this.currentPageSize).subscribe(data => {
-      this.getAllQuestionsResponseDto = data
-      console.log(this.getAllQuestionsResponseDto);
-
-    })
+    this.fetchQuestions(this.pageNumber, this.currentPageSize);
   }
-  deleteQuestion(id: String) {
-    this.questionService.deleteQuestion(id)
+
+  deleteQuestion(key: string, index: number) {
+    this.questionService.deleteQuestion(key).subscribe(data => {
+      this.questions = this.questions ? this.questions.filter(question => question.key !== key) : null;
+    })
+
+  }
+
+  fetchQuestions(pageNumber: number, pageSize: number) {
+    this.questionService.fetchPaginatedQuestions(pageNumber, pageSize).subscribe(data => {
+      this.questions = data.questions
+      this.totalQuestionsCount = data.totalQuestions;
+      this.currentPageSize = data.pageSize;
+      this.pageNumber = data.pageNumber;
+    })
   }
 
 }

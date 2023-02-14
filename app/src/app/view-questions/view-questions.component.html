@@ -1,9 +1,7 @@
 <h1>Questions</h1>
-<div *ngIf="getAllQuestionsResponseDto">
+<div *ngIf="questions">
   <ul>
-    <li
-      *ngFor="let question of getAllQuestionsResponseDto.questions; index as i"
-    >
+    <li *ngFor="let question of questions; index as i">
       <mat-card>
         <mat-card-header> {{ i + 1 }}){{ question.name }} </mat-card-header>
         <mat-card-content>
@@ -11,21 +9,25 @@
             <li>{{ j + 1 }}){{ answer.name }}</li>
           </ul>
           <div class="questionOptions">
-            <button mat-mini-fab color="accent" (click)="addAnswer(i)">
+            <button
+              mat-mini-fab
+              color="accent"
+              (click)="addAnswer(question.key)"
+            >
               <mat-icon>add</mat-icon>
             </button>
             <button
               mat-mini-fab
               color="warn"
               class="deleteButton"
-              (click)="deleteQuestion(question.key)"
+              (click)="deleteQuestion(question.key, i)"
             >
               <mat-icon>delete</mat-icon>
             </button>
           </div>
 
           <app-answer-form
-            *ngIf="showBlock[i]"
+            *ngIf="editingQuestionKey === question.key"
             [question]="question"
           ></app-answer-form>
         </mat-card-content>
@@ -41,7 +43,7 @@
     Add Question
   </button>
   <mat-paginator
-    [length]="getAllQuestionsResponseDto.totalQuestions"
+    [length]="totalQuestionsCount"
     [pageSize]="currentPageSize"
     [pageSizeOptions]="pageSize"
     aria-label="Select page"

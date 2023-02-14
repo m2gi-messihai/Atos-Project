@@ -38,7 +38,7 @@ export class QuestionService {
 
   deleteQuestion(id: String) {
     console.log(id);
-    return this.http.delete(this.API + "/" + id).subscribe();
+    return this.http.delete(this.API + "/" + id);
 
   }
   createQuestion(question: Question) {

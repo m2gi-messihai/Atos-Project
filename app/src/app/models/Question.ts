@@ -1,16 +1,15 @@
 import { Answer } from "./Answer";
 
 export interface Question {
-    id: String;
-    key: String;
-    name: String;
-    levelId: String;
-    typeId: String;
-    category: String;
-    subCategory: String;
-    mark: String;
-    expectedTime: String;
-    correctAnswerIds: String[];
-    createdBy: String;
+    key: string;
+    name: string;
+    levelId: string;
+    typeId: string;
+    category: string;
+    subCategory: string;
+    mark: string;
+    expectedTime: string;
+    correctAnswerIds: string[];
+    createdBy: string;
     answers: Answer[];
 }
