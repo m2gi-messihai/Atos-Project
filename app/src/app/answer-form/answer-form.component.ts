@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Answer } from '../models/Answer';
 import { Question } from '../models/Question';
@@ -14,7 +14,6 @@ export class AnswerFormComponent implements OnInit {
 
   answerForm: FormGroup;
 
-
   constructor(public questionService: QuestionService, private fb: FormBuilder) {
     this.answerForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -25,6 +24,7 @@ export class AnswerFormComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
   onSubmit(answer: Answer) {
 
     if (this.question) {
@@ -33,16 +33,16 @@ export class AnswerFormComponent implements OnInit {
       if (this.question.answers) {
         answers = this.question.answers;
       }
-
       answers.push(answer);
-
-      this.questionService.addAnswer(questionId, answers);
+      this.questionService.addAnswer(questionId, answers).subscribe(res => {
+      });
 
     }
     else {
       console.log("question is null")
     }
   }
+
 
 }
 

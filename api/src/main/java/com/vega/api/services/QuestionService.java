@@ -29,7 +29,6 @@ public class QuestionService {
 
     public List<Question> list() {
         return questionRepository.findAll();
-
     }
 
     public Optional<Question> read(ObjectId id) {
@@ -55,16 +54,6 @@ public class QuestionService {
         return null;
 
     }
-
-    // change function name
-    // public Page<Question> findProductsWithPagination(String offset, String
-    // pageSize) {
-    // int integerOffset = Integer.parseInt(offset);
-    // int integerPageSize = Integer.parseInt(pageSize);
-    // Page<Question> questions =
-    // questionRepository.findAll(PageRequest.of(integerOffset, integerPageSize));
-    // return questions;
-    // }
 
     public GetAllQuestionsResponseDto getPaginatedQuestions(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);

@@ -7,7 +7,7 @@
   >
     <mat-form-field>
       <mat-label>Question body</mat-label>
-      <input matInput formControlName="name" />
+      <textarea matInput formControlName="name"></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Level</mat-label>
@@ -39,17 +39,23 @@
       <input matInput formControlName="mark" />
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Expected Time</mat-label>
-      <input matInput formControlName="expectedTime" />
+      <mat-label>Expected Time in seconds</mat-label>
+      <input matInput formControlName="expectedTime" placeholder="20" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Created by</mat-label>
       <input matInput formControlName="createdBy" />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Created At</mat-label>
-      <input matInput formControlName="createdAt" />
+      <input matInput [matDatepicker]="picker" formControlName="createdAt" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <button
       mat-raised-button

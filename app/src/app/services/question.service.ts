@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, map } from 'rxjs';
 import { Client } from '../clients/client';
+import { ErrorPopupComponent } from '../error-popup/error-popup.component';
 import { Answer } from '../models/Answer';
 import { GetAllQuestionsRsponseDto } from '../models/GetAllQuestionsResponseDto';
 import { Question } from '../models/Question';
@@ -12,7 +14,7 @@ import { Question } from '../models/Question';
 export class QuestionService {
 
   API = 'http://localhost:8080/questions';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public dialog: MatDialog) { }
   fetchQuestions() {
     return this.http
       .get<{ [key: string]: Question }>(
@@ -38,26 +40,26 @@ export class QuestionService {
 
   deleteQuestion(id: String) {
     console.log(id);
-    return this.http.delete(this.API + "/" + id);
-
+    return this.http.delete(this.API + "/" + id).pipe(catchError(this.handleError));
   }
   createQuestion(question: Question) {
-    this.http
-      .post<{ name: string }>(
+    return this.http
+      .post<Question>(
         this.API,
         question
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+      );
+
   }
 
   addAnswer(questionId: String, answers: Answer[]) {
 
-    return this.http.patch<Question>(this.API + '/' + questionId, answers).subscribe((res) => {
-      console.log(res);
+    return this.http.patch<Question>(this.API + '/' + questionId, answers);
+  }
+  handleError(error: any): Promise<any> {
 
-    })
+    this.dialog.open(ErrorPopupComponent);
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
 }

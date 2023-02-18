@@ -29,8 +29,7 @@ export class AddQuestionComponent implements OnInit {
       expectedTime: ['', [Validators.required]],
       createdBy: ['', [Validators.required]],
       createdAt: ['', [Validators.required]],
-      // correctAnswerIds: [''],
-      // answers: ['']
+
 
     }
     )
@@ -52,8 +51,11 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(question: Question) {
-    this.questionService.createQuestion(question);
-    this.router.navigate([''])
+    this.questionService.createQuestion(question).subscribe((res) => {
+      this.router.navigate([''])
+
+    })
+
 
   }
 
@@ -61,6 +63,5 @@ export class AddQuestionComponent implements OnInit {
 //the time of the question (add seconds ou minutes)
 //the question should be in a text area
 //map entity to dto in a seperate class
-//path varial can't be null
 //adding new elment in ui
 //redundent recylcle bin and add new answer

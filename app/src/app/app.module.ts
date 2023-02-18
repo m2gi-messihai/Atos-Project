@@ -19,6 +19,10 @@ import { AnswerFormComponent } from './answer-form/answer-form.component'
 import { MatSelectModule } from '@angular/material/select'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { ErrorPopupComponent } from './error-popup/error-popup.component';
 
 
 @NgModule({
@@ -27,6 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
     AddQuestionComponent,
     ViewQuestionsComponent,
     AnswerFormComponent,
+    ErrorPopupComponent,
 
   ],
   imports: [
@@ -45,7 +50,9 @@ import { MatPaginatorModule } from '@angular/material/paginator'
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   providers: [],

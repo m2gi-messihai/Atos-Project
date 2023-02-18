@@ -4,3 +4,8 @@
     width: 30%;
     margin: 20px;
 }
+
+.answerFormOptions {
+    display: flex;
+    gap: 20px;
+}
