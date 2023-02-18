@@ -23,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ErrorPopupComponent } from './error-popup/error-popup.component';
     ViewQuestionsComponent,
     AnswerFormComponent,
     ErrorPopupComponent,
+    RegistrationComponent,
 
   ],
   imports: [

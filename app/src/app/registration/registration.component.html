@@ -1,0 +1,44 @@
+<h1>Registration</h1>
+<form
+  class="registrationForm"
+  [formGroup]="registrationForm"
+  (ngSubmit)="onSubmit(registrationForm.value)"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Firstname</mat-label>
+    <input matInput formControlName="firstname" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Lastname</mat-label>
+    <input matInput formControlName="lastname" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Mobile number</mat-label>
+    <input matInput formControlName="mobileNumber" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Birthdate</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="submitButton" type="submit">
+    Register
+  </button>
+</form>

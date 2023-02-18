@@ -8,7 +8,6 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,11 +34,6 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    // @GetMapping("")
-    // public List<Question> list() {
-    // return questionService.list();
-    // }
-
     @GetMapping("/{id}")
     public Optional<Question> read(@PathVariable ObjectId id) {
         return questionService.read(id);
@@ -63,13 +57,6 @@ public class QuestionController {
 
     }
 
-    // @GetMapping("")
-    // public Page<Question> findProductsWithPagination(@RequestParam String offset,
-    // @RequestParam String pageSize) {
-
-    // return questionService.findProductsWithPagination(offset, pageSize);
-
-    // }
     @GetMapping
     public GetAllQuestionsResponseDto getAllPosts(
             @RequestParam(value = "pageNumber") Integer pageNumber,

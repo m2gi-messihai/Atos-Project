@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, map } from 'rxjs';
-import { Client } from '../clients/client';
 import { ErrorPopupComponent } from '../error-popup/error-popup.component';
 import { Answer } from '../models/Answer';
 import { GetAllQuestionsRsponseDto } from '../models/GetAllQuestionsResponseDto';
