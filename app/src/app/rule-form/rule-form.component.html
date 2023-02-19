@@ -1,0 +1,18 @@
+<h1>Create Rule</h1>
+<form
+  class="ruleForm"
+  [formGroup]="ruleForm"
+  (ngSubmit)="onSubmit(ruleForm.value)"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Rule name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Rule description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="submitButton" type="submit">
+    Crete Rule
+  </button>
+</form>

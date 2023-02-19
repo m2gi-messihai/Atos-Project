@@ -1,8 +1,10 @@
-.registrationForm {
+.ruleForm {
     display: flex;
     flex-direction: column;
+
 }
 
 .submitButton {
     width: fit-content;
+
 }

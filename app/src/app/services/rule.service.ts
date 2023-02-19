@@ -1,20 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/User';
+import { Rule } from '../models/Rule';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  API = 'http://localhost:8080/registration';
+export class RuleService {
+  API = 'http://localhost:8080/ruleForm';
 
   constructor(private http: HttpClient) { }
-  createUser(user: User) {
+  createRule(rule: Rule) {
     return this.http
-      .post<User>(
+      .post<Rule>(
         this.API,
-        user
+        rule
       );
-
   }
 }

@@ -24,6 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { RuleFormComponent } from './rule-form/rule-form.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RegistrationComponent } from './registration/registration.component';
     AnswerFormComponent,
     ErrorPopupComponent,
     RegistrationComponent,
+    RuleFormComponent,
 
   ],
   imports: [
