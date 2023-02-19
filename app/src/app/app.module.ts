@@ -26,6 +26,8 @@ import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RuleFormComponent } from './rule-form/rule-form.component';
 import { ExamFormComponent } from './exam-form/exam-form.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { ExamFormComponent } from './exam-form/exam-form.component';
     RegistrationComponent,
     RuleFormComponent,
     ExamFormComponent,
+    HomePageComponent,
+    NavigationBarComponent,
 
   ],
   imports: [
