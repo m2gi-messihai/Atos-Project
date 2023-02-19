@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from '../models/Role';
 import { User } from '../models/User';
 import { UserService } from '../services/user.service';
 
@@ -19,7 +20,8 @@ export class RegistrationComponent implements OnInit {
       birthDate: ['', [Validators.required]],
       email: ['', [Validators.required]],
       mobileNumber: ['', [Validators.required]],
-      address: ['', [Validators.required]]
+      address: ['', [Validators.required]],
+      role: ['', [Validators.required]]
     })
   }
   onSubmit(user: User) {
@@ -27,6 +29,11 @@ export class RegistrationComponent implements OnInit {
     })
 
   }
+  roles: Role[] = [
+    { code: 'admin', label: 'Admin' },
+    { code: 'sme', label: 'SME' },
+    { code: 'student', label: 'Student' }
+  ];
 
   ngOnInit(): void {
   }

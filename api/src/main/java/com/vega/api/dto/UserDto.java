@@ -8,6 +8,7 @@ public class UserDto {
     private String uid;
     private String firstName;
     private String lastName;
+    private String role;
     private String birthDate;
     private String gender;
     private String email;
