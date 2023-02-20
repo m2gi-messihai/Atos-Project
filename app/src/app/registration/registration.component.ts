@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required]],
       mobileNumber: ['', [Validators.required]],
       address: ['', [Validators.required]],
-      role: ['', [Validators.required]]
+      roles: ['', [Validators.required]]
     })
   }
   onSubmit(user: User) {

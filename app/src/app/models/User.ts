@@ -6,5 +6,6 @@ export interface User {
     gender: string;
     email: string;
     mobileNumber: string;
-    Address: string
+    Address: string;
+    roles: string[];
 }
