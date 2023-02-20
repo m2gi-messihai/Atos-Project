@@ -28,6 +28,7 @@ import { RuleFormComponent } from './rule-form/rule-form.component';
 import { ExamFormComponent } from './exam-form/exam-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { MatMenuModule } from '@angular/material/menu'
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     MatCheckboxModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatMenuModule
 
   ],
   providers: [],
