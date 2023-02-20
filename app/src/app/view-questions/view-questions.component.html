@@ -24,11 +24,12 @@
           <ul *ngFor="let answer of question.answers; index as j">
             <li>{{ j + 1 }}){{ answer.name }}</li>
           </ul>
-
-          <app-answer-form
-            *ngIf="editingQuestionKey === question.key"
-            [question]="question"
-          ></app-answer-form>
+          <div *ngIf="editingQuestionKey === question.key">
+            <button mat-icon-button color="primary" (click)="exitAnswerForm()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <app-answer-form [question]="question"></app-answer-form>
+          </div>
         </mat-card-content>
       </mat-card>
     </li>

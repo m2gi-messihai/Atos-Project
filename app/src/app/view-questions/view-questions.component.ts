@@ -27,15 +27,14 @@ export class ViewQuestionsComponent implements OnInit {
 
   addAnswer(key: string) {
     this.editingQuestionKey = key;
-    // if(this.editingQuestionKey===key&&this.answerFormState===true){
-
-    // }
-
-
-
   }
+
   getAnswers(answers: Answer[]) {
     this.answers = answers;
+
+  }
+  exitAnswerForm() {
+    this.editingQuestionKey = null;
 
   }
   onPageChange(event: PageEvent) {
