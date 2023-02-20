@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ExamDefinition } from '../models/ExamDefinition';
 import { ExamDefinitionService } from '../services/exam-definition.service';
 
@@ -10,12 +11,14 @@ import { ExamDefinitionService } from '../services/exam-definition.service';
 export class HomePageComponent implements OnInit {
   exams: ExamDefinition[] | null = null;
 
-  constructor(public examDefinitionService: ExamDefinitionService) { }
-
+  constructor(private router: Router, public examDefinitionService: ExamDefinitionService) { }
   ngOnInit(): void {
     this.examDefinitionService.getExamDefinition().subscribe((res => {
       this.exams = res;
     }));
+  }
+  examPage(examId: string) {
+    this.router.navigate([`/${examId}`])
 
   }
 

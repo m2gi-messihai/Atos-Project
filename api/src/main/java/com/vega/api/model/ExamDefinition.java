@@ -1,7 +1,9 @@
 package com.vega.api.model;
 
 import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExamDefinition {
     @Id
-    private String id;
+    @Field("_id")
+    private String examId;
     private String name;
     private String passingScore;
     private String[] questionsIds;

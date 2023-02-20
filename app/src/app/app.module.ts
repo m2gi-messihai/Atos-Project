@@ -28,7 +28,8 @@ import { RuleFormComponent } from './rule-form/rule-form.component';
 import { ExamFormComponent } from './exam-form/exam-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { ExamPageComponent } from './exam-page/exam-page.component'
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatMenuModule } from '@angular/material/menu'
     ExamFormComponent,
     HomePageComponent,
     NavigationBarComponent,
+    ExamPageComponent,
 
   ],
   imports: [

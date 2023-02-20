@@ -1,5 +1,5 @@
 export interface ExamDefinition {
-    id: string;
+    examId: string;
     name: string;
     passingScore: string;
     questionsIds: string[];

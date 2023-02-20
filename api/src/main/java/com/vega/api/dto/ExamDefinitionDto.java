@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ExamDefinitionDto {
-    private String id;
+    private String examId;
     private String name;
     private String passingScore;
     private String[] questionsIds;
