@@ -1,1 +1,10 @@
-
+<h1>Exams</h1>
+<div *ngIf="exams">
+  <ul>
+    <li *ngFor="let exam of exams; index as i">
+      <mat-card>
+        <div class="examItem">{{ i + 1 }}){{ exam.name }}</div>
+      </mat-card>
+    </li>
+  </ul>
+</div>

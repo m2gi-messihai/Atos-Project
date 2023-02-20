@@ -16,7 +16,9 @@
               <button mat-menu-item (click)="deleteQuestion(question.key)">
                 Delete Answer
               </button>
-              <button mat-menu-item>Add question to exam</button>
+              <button mat-menu-item (click)="addQuestionToExam(question.key)">
+                Add question to exam
+              </button>
             </mat-menu>
           </div>
         </mat-card-header>

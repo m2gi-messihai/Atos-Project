@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ExamDefinition } from '../models/ExamDefinition';
 import { ExamDefinitionService } from '../services/exam-definition.service';
 
@@ -12,7 +13,7 @@ export class ExamFormComponent implements OnInit {
 
   examForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private examDefinitionService: ExamDefinitionService) {
+  constructor(private router: Router, private fb: FormBuilder, private examDefinitionService: ExamDefinitionService) {
     this.examForm = this.fb.group({
       name: ['', [Validators.required]],
       passingScore: ['', [Validators.required]],
@@ -25,6 +26,7 @@ export class ExamFormComponent implements OnInit {
   }
   onSubmit(exam: ExamDefinition) {
     this.examDefinitionService.createExamDefinition(exam).subscribe((res) => {
+      this.router.navigate([''])
     })
 
   }

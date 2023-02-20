@@ -33,6 +33,9 @@ export class ViewQuestionsComponent implements OnInit {
     this.answers = answers;
 
   }
+  addQuestionToExam(questionKey: string) {
+
+  }
   exitAnswerForm() {
     this.editingQuestionKey = null;
 
