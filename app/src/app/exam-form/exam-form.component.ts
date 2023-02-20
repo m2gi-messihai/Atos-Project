@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExamDefinition } from '../models/ExamDefinition';
+import { ExamDefinitionService } from '../services/exam-definition.service';
 
 @Component({
   selector: 'app-exam-form',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamFormComponent implements OnInit {
 
-  constructor() { }
+  examForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private examDefinitionService: ExamDefinitionService) {
+    this.examForm = this.fb.group({
+      name: ['', [Validators.required]],
+      passingScore: ['', [Validators.required]],
+
+
+    })
+  }
 
   ngOnInit(): void {
+  }
+  onSubmit(exam: ExamDefinition) {
+    this.examDefinitionService.createExamDefinition(exam).subscribe((res) => {
+    })
+
   }
 
 }

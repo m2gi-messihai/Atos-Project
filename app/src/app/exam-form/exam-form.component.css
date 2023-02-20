@@ -1,0 +1,15 @@
+.examForm {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.addQuestionButton,
+.submitButton {
+    width: fit-content;
+}
+
+.examFormOptions {
+    display: flex;
+    gap: 20px;
+}

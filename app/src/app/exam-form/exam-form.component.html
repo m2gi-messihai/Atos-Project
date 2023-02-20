@@ -1,1 +1,34 @@
-
+<h1>Create Exam</h1>
+<form
+  class="examForm"
+  [formGroup]="examForm"
+  (ngSubmit)="onSubmit(examForm.value)"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Exam Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Passing score</mat-label>
+    <textarea matInput formControlName="passingScore"></textarea>
+  </mat-form-field>
+  <div class="examFormOptions">
+    <a
+      mat-raised-button
+      routerLink="/ruleForm"
+      routerLinkActive="active"
+      color="primary"
+      class="addQuestionButton"
+    >
+      Add Questions
+    </a>
+    <button
+      mat-raised-button
+      color="primary"
+      class="submitButton"
+      type="submit"
+    >
+      Create Exam
+    </button>
+  </div>
+</form>
