@@ -2,6 +2,7 @@ package com.vega.api.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import com.vega.api.services.UserService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("")
+@Validated
 public class UserController {
     @Autowired
     private UserService userService;

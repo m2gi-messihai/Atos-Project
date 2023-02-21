@@ -14,7 +14,12 @@ public class UserService {
     };
 
     public User createUser(User user) {
-        return userRepository.save(user);
+        if (userRepository.findByEmail(user.getEmail()) == null
+                && userRepository.findByMobileNumber(user.getMobileNumber()) == null) {
+            return userRepository.save(user);
+        } else {
+            return null;
+        }
     };
 
 }
