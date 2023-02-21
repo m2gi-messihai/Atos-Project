@@ -24,12 +24,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RuleFormComponent } from './rule-form/rule-form.component';
 import { ExamFormComponent } from './exam-form/exam-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ExamPageComponent } from './exam-page/exam-page.component'
+import { RoleFormComponent } from './role-form/role-form.component';
 
 
 @NgModule({
@@ -40,11 +40,11 @@ import { ExamPageComponent } from './exam-page/exam-page.component'
     AnswerFormComponent,
     ErrorPopupComponent,
     RegistrationComponent,
-    RuleFormComponent,
     ExamFormComponent,
     HomePageComponent,
     NavigationBarComponent,
     ExamPageComponent,
+    RoleFormComponent
 
   ],
   imports: [

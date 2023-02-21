@@ -5,10 +5,10 @@ import { ExamFormComponent } from './exam-form/exam-form.component';
 import { ExamPageComponent } from './exam-page/exam-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RuleFormComponent } from './rule-form/rule-form.component';
+import { RoleFormComponent } from './role-form/role-form.component';
 import { ViewQuestionsComponent } from './view-questions/view-questions.component';
 
-const routes: Routes = [{ path: '', component: HomePageComponent }, { path: 'questionBank', component: ViewQuestionsComponent }, { path: 'ruleForm', component: RuleFormComponent }, { path: 'questionform', component: AddQuestionComponent }, { path: 'registration', component: RegistrationComponent }, { path: 'examForm', component: ExamFormComponent }, { path: ":examId", component: ExamPageComponent },];
+const routes: Routes = [{ path: '', component: HomePageComponent }, { path: 'questionBank', component: ViewQuestionsComponent }, { path: 'roleForm', component: RoleFormComponent }, { path: 'questionform', component: AddQuestionComponent }, { path: 'registration', component: RegistrationComponent }, { path: 'examForm', component: ExamFormComponent }, { path: ":examId", component: ExamPageComponent },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

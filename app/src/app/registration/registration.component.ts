@@ -29,11 +29,7 @@ export class RegistrationComponent implements OnInit {
     })
 
   }
-  roles: Role[] = [
-    { code: 'admin', label: 'Admin' },
-    { code: 'sme', label: 'SME' },
-    { code: 'student', label: 'Student' }
-  ];
+
 
   ngOnInit(): void {
   }

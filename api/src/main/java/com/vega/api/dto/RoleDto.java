@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RuleDto {
+public class RoleDto {
 
-    String ruleId;
+    String roleId;
     String name;
     String description;
 

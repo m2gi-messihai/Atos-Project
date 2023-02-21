@@ -6,12 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "Rule")
+@Document(collection = "Role")
 @Data
 @NoArgsConstructor
-public class Rule {
+public class Role {
     @Id
-    String ruleId;
+    String roleId;
     String name;
     String description;
 

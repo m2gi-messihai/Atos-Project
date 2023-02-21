@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RuleFormComponent } from './rule-form.component';
+import { RuleFormComponent } from './role-form.component';
 
 describe('RuleFormComponent', () => {
   let component: RuleFormComponent;
@@ -8,9 +8,9 @@ describe('RuleFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RuleFormComponent ]
+      declarations: [RuleFormComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
