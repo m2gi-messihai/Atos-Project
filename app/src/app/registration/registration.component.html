@@ -38,14 +38,14 @@
       <mat-option value="female">Female</mat-option>
     </mat-select>
   </mat-form-field>
-  <!-- <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>Roles</mat-label>
     <mat-select formControlName="roles" multiple>
-      <mat-option *ngFor="let role of roles" [value]="role.code">{{
-        role.label
+      <mat-option *ngFor="let role of roles" [value]="role">{{
+        role.name
       }}</mat-option>
     </mat-select>
-  </mat-form-field> -->
+  </mat-form-field>
   <button mat-raised-button color="primary" class="submitButton" type="submit">
     Register
   </button>

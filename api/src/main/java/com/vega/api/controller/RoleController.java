@@ -1,8 +1,12 @@
 package com.vega.api.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +21,26 @@ import com.vega.api.services.RoleService;
 @RequestMapping("")
 public class RoleController {
     @Autowired
-    private RoleService ruleService;
+    private RoleService roleService;
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping("/ruleForm")
-    public RoleDto createUser(@RequestBody RoleDto roleDto) {
+    @PostMapping("/roleForm")
+    public RoleDto createRole(@RequestBody RoleDto roleDto) {
         Role role = modelMapper.map(roleDto, Role.class);
-        ruleService.createRule(role);
+        roleService.createRole(role);
         return modelMapper.map(role, RoleDto.class);
+    }
+
+    @GetMapping("/roles")
+    public List<RoleDto> getRoles() {
+        List<Role> roles = roleService.getRoles();
+        List<RoleDto> rolesDto = new ArrayList<>();
+        for (int i = 0; i < roles.size(); i++) {
+            RoleDto roleDto = modelMapper.map(roles.get(i), RoleDto.class);
+            rolesDto.add(roleDto);
+        }
+        return rolesDto;
     }
 
 }

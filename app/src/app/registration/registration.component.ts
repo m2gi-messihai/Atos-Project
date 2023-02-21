@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { resolvePtr } from 'dns';
 import { Role } from '../models/Role';
 import { User } from '../models/User';
+import { RoleService } from '../services/role.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,8 +13,10 @@ import { UserService } from '../services/user.service';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
+  roles: Role[] | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+
+  constructor(private fb: FormBuilder, private userService: UserService, private roleService: RoleService) {
     this.registrationForm = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -32,6 +36,10 @@ export class RegistrationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.roleService.getRoles().subscribe((res) => {
+      this.roles = res;
+      console.log(this.roles);
+    })
   }
 
 }
