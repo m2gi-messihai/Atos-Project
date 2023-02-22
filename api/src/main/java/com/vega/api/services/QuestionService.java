@@ -31,7 +31,7 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
-    public Optional<Question> read(ObjectId id) {
+    public Optional<Question> read(String id) {
         return questionRepository.findById(id);
     }
 

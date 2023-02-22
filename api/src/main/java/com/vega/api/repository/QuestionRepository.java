@@ -9,11 +9,11 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 
-public interface QuestionRepository extends MongoRepository<Question, ObjectId> {
+public interface QuestionRepository extends MongoRepository<Question, String> {
     @Query(value = "{key:?0}", delete = true)
     public void deleteById(String id);
 
-    @Query(value = "{key:?0}")
-    public Optional<Question> findById(String id);
+    // @Query(value = "{key:?0}")
+    // public Optional<Question> findById(String id);
 
 }

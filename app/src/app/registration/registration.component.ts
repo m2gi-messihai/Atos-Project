@@ -18,8 +18,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userService: UserService, private roleService: RoleService) {
     this.registrationForm = this.fb.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       birthDate: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -30,6 +30,8 @@ export class RegistrationComponent implements OnInit {
   }
   onSubmit(user: User) {
     this.userService.createUser(user).subscribe((res) => {
+      console.log(res);
+
     })
 
   }
@@ -37,6 +39,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleService.getRoles().subscribe((res) => {
+
       this.roles = res;
       console.log(this.roles);
     })

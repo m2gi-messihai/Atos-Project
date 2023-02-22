@@ -35,7 +35,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping("/{id}")
-    public Optional<Question> read(@PathVariable ObjectId id) {
+    public Optional<Question> read(@PathVariable String id) {
         return questionService.read(id);
     }
 

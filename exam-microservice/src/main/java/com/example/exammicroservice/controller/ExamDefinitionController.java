@@ -3,6 +3,8 @@ package com.example.exammicroservice.controller;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import com.example.exammicroservice.service.ExamDefinitionService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/exams")
 public class ExamDefinitionController {
+    private Logger log = LoggerFactory.getLogger(ExamDefinitionController.class);
     @Autowired
     private ExamDefinitionService examDefinitionService;
     @Autowired
@@ -46,10 +49,17 @@ public class ExamDefinitionController {
         return examDefinitionService.getAllExams();
     }
 
-    @GetMapping("/{examId}")
-    public ExamDefinitionDto getExamById(@PathVariable String examId) {
-        ExamDefinition examDefinition = examDefinitionService.getExamById(examId).get();
-        return modelMapper.map(examDefinition, ExamDefinitionDto.class);
+    @GetMapping("/{id}")
+    public ExamDefinitionDto getExamById(@PathVariable String id) {
+
+        ExamDefinition examDefinition = examDefinitionService.getExamById(id);
+        if (examDefinition == null) {
+            log.debug("exam def is null");
+            return null;
+        } else {
+            return modelMapper.map(examDefinition, ExamDefinitionDto.class);
+        }
+
     }
 
 }

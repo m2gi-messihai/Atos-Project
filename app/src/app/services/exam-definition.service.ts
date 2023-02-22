@@ -34,6 +34,9 @@ export class ExamDefinitionService {
         })
       );
   }
-
-
+  getExamDefinitionById(id: String) {
+    return this.http.get<ExamDefinition>(
+      this.API + "/" + id
+    )
+  }
 }

@@ -3,6 +3,8 @@ package com.example.exammicroservice.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import com.example.exammicroservice.repository.ExamDefinitionRepository;
 
 @Service
 public class ExamDefinitionService {
+    private Logger log = LoggerFactory.getLogger(ExamDefinitionService.class);
     @Autowired
     private ExamDefinitionRepository examDefinitionRepository;
 
@@ -24,8 +27,10 @@ public class ExamDefinitionService {
         if (existingExam.isPresent()) {
             existingExam.get().setQuestionsIds(questionId);
             return examDefinitionRepository.save(existingExam.get());
+        } else {
+
+            return null;
         }
-        return null;
 
     };
 
@@ -33,8 +38,15 @@ public class ExamDefinitionService {
         return examDefinitionRepository.findAll();
     }
 
-    public Optional<ExamDefinition> getExamById(String id) {
-        return examDefinitionRepository.findById(id);
+    public ExamDefinition getExamById(String id) {
+        Optional<ExamDefinition> examDefinition = examDefinitionRepository.findById(id);
+        if (examDefinition.isPresent()) {
+            return examDefinition.get();
+        } else {
+            log.debug("id is " + id);
+            return null;
+        }
+
     }
 
 }
