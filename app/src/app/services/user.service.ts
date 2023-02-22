@@ -6,7 +6,7 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserService {
-  API = 'http://localhost:8080/registration';
+  API = 'http://localhost:8081/registration';
 
   constructor(private http: HttpClient) { }
   createUser(user: User) {

@@ -7,7 +7,7 @@ import { ExamDefinition } from '../models/ExamDefinition';
   providedIn: 'root'
 })
 export class ExamDefinitionService {
-  API = 'http://localhost:8080';
+  API = 'http://localhost:8082/exams';
 
   constructor(private http: HttpClient) { }
   createExamDefinition(examDefinition: ExamDefinition) {
@@ -20,7 +20,7 @@ export class ExamDefinitionService {
   getExamDefinition() {
     return this.http
       .get<{ [key: string]: ExamDefinition }>(
-        this.API + "/exams"
+        this.API
       )
       .pipe(
         map((res) => {
