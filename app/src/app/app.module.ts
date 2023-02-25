@@ -30,6 +30,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { MatMenuModule } from '@angular/material/menu';
 import { ExamPageComponent } from './exam-page/exam-page.component'
 import { RoleFormComponent } from './role-form/role-form.component';
+import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-popup.component';
 
 
 @NgModule({
@@ -44,7 +45,9 @@ import { RoleFormComponent } from './role-form/role-form.component';
     HomePageComponent,
     NavigationBarComponent,
     ExamPageComponent,
-    RoleFormComponent
+    RoleFormComponent,
+    AddQuestionsPopupComponent,
+
 
   ],
   imports: [

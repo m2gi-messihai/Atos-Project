@@ -1,0 +1,23 @@
+<h1>Questions</h1>
+<div>
+  <div *ngIf="questions">
+    <ul>
+      <li *ngFor="let question of questions; index as i">
+        <mat-checkbox
+          class="questionHeader"
+          (change)="addToExam(question.key, $event)"
+          >{{ i + 1 }}){{ question.name }}</mat-checkbox
+        >
+      </li>
+    </ul>
+    <button mat-button color="primary" (click)="close()">Done</button>
+  </div>
+
+  <mat-paginator
+    [length]="totalQuestionsCount"
+    [pageSize]="currentPageSize"
+    [pageSizeOptions]="pageSize"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
