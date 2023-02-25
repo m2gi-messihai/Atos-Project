@@ -1,20 +1,18 @@
-package com.example.exammicroservice.model;
+package com.example.exammicroservice.dto;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.example.exammicroservice.model.GeneratedLink;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Document(collection = "ExamInstance")
 @Data
 @AllArgsConstructor
-public class ExamInstance {
-    @Id
+public class ExamInstanceDto {
+
     String examInstanceId;
-    String examDefinitionId;
+    String examDefinitionID;
     String startedTime;
     String endTime;
     String duration;
