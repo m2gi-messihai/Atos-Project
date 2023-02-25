@@ -27,7 +27,7 @@ export class ExamFormComponent implements OnInit {
     })
   }
   addQuestionForm() {
-    let dialoRef = this.dialog.open(AddQuestionsPopupComponent)
+    let dialoRef = this.dialog.open(AddQuestionsPopupComponent, { disableClose: true })
     dialoRef.afterClosed().subscribe((res) => {
       this.questionIds = res.data;
 
@@ -44,9 +44,6 @@ export class ExamFormComponent implements OnInit {
       exam.questionsIds = this.questionIds;
       console.log(this.questionIds);
     }
-
-
-
     this.examDefinitionService.createExamDefinition(exam).subscribe((res) => {
 
 

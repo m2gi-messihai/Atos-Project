@@ -11,16 +11,12 @@ import { QuestionService } from '../services/question.service';
 })
 export class AddQuestionsPopupComponent implements OnInit {
   questions: Question[] | null = null;
-  questionIds: String[] | null = new Array();
+  questionIds: string[] | null = new Array();
   totalQuestionsCount: number = 0;
   pageSize: number[] = [3, 6, 9]
   currentPageSize: number = 3;
   pageNumber: number = 0;
   checkBoxState: boolean = false;
-
-
-
-
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: string[], private questionService: QuestionService, public dialogRef: MatDialogRef<AddQuestionsPopupComponent>,) { }
 
@@ -28,16 +24,19 @@ export class AddQuestionsPopupComponent implements OnInit {
     this.fetchQuestions(this.pageNumber, this.currentPageSize);
   }
   addToExam(key: string, event: any) {
+    if (this.questionIds) {
+      this.checkBoxState = event.checked;
 
-    if (event.checked) {
-      this.questionIds?.push(key);
-
-    } else {
-      this.questionIds?.forEach((element, index) => {
-        if (element == key && this.questionIds) delete this.questionIds[index];
-      });
+      if (this.checkBoxState) {
+        this.questionIds.push(key);
+      }
+      else {
+        this.questionIds = this.questionIds.filter(questionId => questionId !== key);
+      }
     }
 
+  }
+  showState() {
 
   }
   close() {
