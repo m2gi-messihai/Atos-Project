@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExamDefinition } from '../models/ExamDefinition';
 import { ExamDefinitionService } from '../services/exam-definition.service';
 
@@ -10,19 +10,25 @@ import { ExamDefinitionService } from '../services/exam-definition.service';
 })
 export class ExamPageComponent implements OnInit {
   exam: ExamDefinition | null = null;
+  examId: string | null = "";
 
 
-  constructor(private route: ActivatedRoute, private examDefinitionService: ExamDefinitionService) { }
+  constructor(private route: ActivatedRoute, private examDefinitionService: ExamDefinitionService, private router: Router) { }
 
   ngOnInit(): void {
-    const examId = this.route.snapshot.paramMap.get('examId');
-    console.log(examId)
-    if (examId) {
-      this.examDefinitionService.getExamDefinitionById(examId).subscribe((res) => {
+
+    this.examId = this.route.snapshot.paramMap.get('examId');
+    console.log(this.examId)
+    if (this.examId) {
+      this.examDefinitionService.getExamDefinitionById(this.examId).subscribe((res) => {
         this.exam = res;
       });
 
     }
+
+  }
+  assignExam() {
+    this.router.navigate([`/${this.examId}/assignExam`])
 
   }
 

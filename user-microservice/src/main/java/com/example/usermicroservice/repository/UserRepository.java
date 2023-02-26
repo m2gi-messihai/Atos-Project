@@ -1,5 +1,7 @@
 package com.example.usermicroservice.repository;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -11,5 +13,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     @Query(value = "{mobileNumber:?0}")
     public User findByMobileNumber(String mobileNumber);
+
+    @Query("{'roles.name':STUDENT}")
+    public List<User> findStudents();
 
 }

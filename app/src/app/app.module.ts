@@ -21,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -31,6 +32,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ExamPageComponent } from './exam-page/exam-page.component'
 import { RoleFormComponent } from './role-form/role-form.component';
 import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-popup.component';
+import { AssignExamToStudentComponent } from './assign-exam-to-student/assign-exam-to-student.component';
+
 
 
 @NgModule({
@@ -47,7 +50,7 @@ import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-
     ExamPageComponent,
     RoleFormComponent,
     AddQuestionsPopupComponent,
-
+    AssignExamToStudentComponent,
 
   ],
   imports: [
@@ -69,7 +72,8 @@ import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    MatAutocompleteModule
 
   ],
   providers: [],

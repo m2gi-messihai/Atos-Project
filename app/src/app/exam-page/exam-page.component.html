@@ -6,8 +6,8 @@
     >
   </mat-card-header>
   <mat-card-actions>
-    <a mat-button routerLink="/questionBank" routerLinkActive="active"
-      >Add Questions to Exam</a
-    >
+    <button mat-button (click)="assignExam()">
+      <div>Assign Exam to student</div>
+    </button>
   </mat-card-actions>
 </mat-card>
