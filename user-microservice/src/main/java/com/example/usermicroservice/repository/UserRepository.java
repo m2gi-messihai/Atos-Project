@@ -17,4 +17,7 @@ public interface UserRepository extends MongoRepository<User, String> {
     @Query("{'roles.name':STUDENT}")
     public List<User> findStudents();
 
+    @Query("{'roles.name':TEACHER}")
+    public List<User> findTeachers();
+
 }

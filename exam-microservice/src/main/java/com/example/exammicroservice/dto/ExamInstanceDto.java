@@ -6,9 +6,10 @@ import com.example.exammicroservice.model.GeneratedLink;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public class ExamInstanceDto {
 
     String examInstanceId;

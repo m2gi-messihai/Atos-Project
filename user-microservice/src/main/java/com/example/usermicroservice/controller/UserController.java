@@ -46,4 +46,15 @@ public class UserController {
         return studentsDto;
     }
 
+    @GetMapping("/teachers")
+    public List<UserDto> getTeachers() {
+        List<User> teachers = userService.getTeachers();
+        List<UserDto> teachersDto = new ArrayList<>();
+        for (int i = 0; i < teachers.size(); i++) {
+            UserDto userdto = modelMapper.map(teachers.get(i), UserDto.class);
+            teachersDto.add(userdto);
+        }
+        return teachersDto;
+    }
+
 }

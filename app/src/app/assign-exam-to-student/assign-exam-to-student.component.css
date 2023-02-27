@@ -2,9 +2,16 @@
     width: 70%;
     padding: 20px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 
 }
 
-.assignUserFormField {
-    width: 100%;
+.assignExamButton {
+    width: fit-content;
+}
+
+.generatedLinkForm {
+    display: flex;
+    gap: 20px;
 }

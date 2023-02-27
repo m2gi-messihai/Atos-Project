@@ -35,5 +35,22 @@ export class UserService {
         })
       );
   }
+  getTeachers() {
+    return this.http
+      .get<{ [key: string]: User }>(
+        this.API + "/teachers"
+      )
+      .pipe(
+        map((res) => {
+          const users = [];
+          for (const key in res) {
+            if (res.hasOwnProperty(key)) {
+              users.push({ ...res[key], id: key });
+            }
+          }
+          return users;
+        })
+      );
+  }
 
 }

@@ -1,21 +1,53 @@
-<form class="assignUserForm">
-  <mat-form-field class="assignUserFormField" appearance="fill">
-    <mat-label>Assign Student</mat-label>
+<form
+  class="assignUserForm"
+  [formGroup]="assignExamForm"
+  (submit)="assignExam(assignExamForm.value, generatedLinkForm.value)"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Student Email</mat-label>
     <input
       type="text"
       placeholder="Pick one"
-      aria-label="Number"
       matInput
-      [formControl]="myControl"
+      [formControl]="studentsControl"
       [matAutocomplete]="auto"
     />
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option.email"
+        *ngFor="let student of filteredStudents | async"
+        [value]="student.firstName + student.lastName"
+        (onSelectionChange)="getUserId(student.uid)"
       >
-        {{ option.email }}
+        {{ student.email }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Duration in minutes</mat-label>
+    <input matInput formControlName="duration" placeholder="20" />
+  </mat-form-field>
+  <form [formGroup]="generatedLinkForm" class="generatedLinkForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Scheduled Time From</mat-label>
+      <input
+        matInput
+        formControlName="scheduledTimeFrom"
+        placeholder="12:00PM"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Scheduled Time To</mat-label>
+      <input matInput formControlName="scheduledTimeTo" placeholder="2:00PM" />
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="assignExamButton"
+    type="submit"
+  >
+    Assign Exam
+  </button>
 </form>

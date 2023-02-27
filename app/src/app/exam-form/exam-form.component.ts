@@ -14,7 +14,7 @@ import { ExamDefinitionService } from '../services/exam-definition.service';
 export class ExamFormComponent implements OnInit {
 
   examForm: FormGroup;
-  exam: ExamDefinition | null = null;
+  // exam: ExamDefinition | null = null;
   questionIds: string[] | null = null;
 
 
@@ -40,7 +40,6 @@ export class ExamFormComponent implements OnInit {
     exam.name = this.examForm.value.name;
     exam.passingScore = this.examForm.value.passingScore;
     if (this.questionIds) {
-
       exam.questionsIds = this.questionIds;
       console.log(this.questionIds);
     }

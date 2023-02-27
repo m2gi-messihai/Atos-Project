@@ -28,8 +28,12 @@ public class UserService {
     };
 
     public List<User> getStudents() {
-        log.debug("--------------------------------------------");
         return this.userRepository.findStudents();
+    }
+
+    public List<User> getTeachers() {
+        return this.userRepository.findTeachers();
+
     }
 
 }
