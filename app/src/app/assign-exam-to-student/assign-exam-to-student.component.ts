@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { ExamInstance } from '../models/ExamInstance';
 import { GeneratedLink } from '../models/GeneratedLink';
@@ -28,7 +28,7 @@ export class AssignExamToStudentComponent implements OnInit {
   filteredStudents: Observable<User[]> | null = null;
   filteredTeachers: Observable<User[]> | null = null;
 
-  constructor(private examInstanceService: ExamInstanceService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private router: Router, private examInstanceService: ExamInstanceService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder) {
     this.assignExamForm = this.fb.group({
       duration: ['', [Validators.required]],
 
@@ -92,12 +92,9 @@ export class AssignExamToStudentComponent implements OnInit {
       console.log(res);
     });
     console.log(examInstance.examInstanceId);
+    this.router.navigate(['/assignedExams']);
   }
   getUserId(id: string) {
     this.userId = id;
   }
-  takeExam() {
-
-  }
-
 }

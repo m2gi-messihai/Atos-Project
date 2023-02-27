@@ -1,7 +1,5 @@
 package com.example.exammicroservice.model;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,14 +13,14 @@ public class ExamInstance {
     @Id
     String examInstanceId;
     String examDefinitionId;
-    String startedTime;
-    String endTime;
-    String duration;
-    String completionTime;
-    GeneratedLink generatedLink;
-    String createdBy;
+    String startedTime;// take exam
+    String endTime;// submit
+    String duration;// check if user exceeded duration(calculated)
+    String completionTime;// submit exam calsulated
+    GeneratedLink generatedLink;//
+    String createdBy;//
     String takenBy;
-    String status;
-    ExamQuestion[] examQuestions;
+    String status;// take exam
+    ExamQuestion[] examQuestions;// take exam
 
 }

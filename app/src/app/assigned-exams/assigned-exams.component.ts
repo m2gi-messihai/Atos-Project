@@ -25,18 +25,10 @@ export class AssignedExamsComponent implements OnInit {
     this.examInstanceService.getAssignedExams().subscribe((res) => {
       this.assignedExams = res;
       console.log(this.assignedExams);
-      // this.getExamDefinitionName(this.assignedExams);
+
     })
   }
 
-  // getExamDefinitionName(assignedExams: ExamInstance[]) {
-  //   assignedExams.forEach((assignedExam) => {
-  //     this.examDefinitionService.getExamDefinitionById(assignedExam.examDefinitionId).subscribe((res) => {
-  //       this.assigneExamDefinition = res;
-  //       this.assigneExamsName?.push(res.name);
-  //     });
-  //   })
-  // }
   takeExam(exam: ExamInstance) {
     console.log(exam.examInstanceId);
     this.examDefinitionService.getExamDefinitionById(exam.examDefinitionId).subscribe((res) => {
