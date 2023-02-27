@@ -23,6 +23,6 @@ public class ExamInstance {
     String createdBy;
     String takenBy;
     String status;
-    List<ExamQuestion> examQuestions;
+    ExamQuestion[] examQuestions;
 
 }

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ExamInstanceDto {
 
     String examInstanceId;
-    String examDefinitionID;
+    String examDefinitionId;
     String startedTime;
     String endTime;
     String duration;
@@ -22,6 +22,6 @@ public class ExamInstanceDto {
     String createdBy;
     String takenBy;
     String status;
-    List<ExamQuestion> examQuestions;
+    List<ExamQuestionDto> examQuestions;
 
 }

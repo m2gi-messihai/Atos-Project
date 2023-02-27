@@ -1,0 +1,15 @@
+<h1>Exams</h1>
+<div *ngIf="assignedExams">
+  <ul>
+    <li *ngFor="let exam of assignedExams; index as i">
+      <mat-card>
+        <div class="examItem">
+          {{ i + 1 }}){{ exam.examInstanceId }}
+          <button mat-raised-button color="primary" (click)="takeExam(exam)">
+            Start Exam
+          </button>
+        </div>
+      </mat-card>
+    </li>
+  </ul>
+</div>

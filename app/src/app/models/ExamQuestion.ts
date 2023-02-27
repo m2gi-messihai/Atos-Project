@@ -3,5 +3,4 @@ export interface ExamQuestion {
     selectedAnswerId: string;
     displayTime: string;
     answerTime: string;
-
 }

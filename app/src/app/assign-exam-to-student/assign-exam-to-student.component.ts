@@ -19,6 +19,7 @@ export class AssignExamToStudentComponent implements OnInit {
   teachers: User[] | null = null;
   userId: string | null = null;
   examId: string | null = "";
+  examInstanceId: string | null = null;
   generatedLink: GeneratedLink | null = null;
   assignExamForm: FormGroup;
   generatedLinkForm: FormGroup;
@@ -90,9 +91,13 @@ export class AssignExamToStudentComponent implements OnInit {
     this.examInstanceService.assignExam(examInstance).subscribe((res) => {
       console.log(res);
     });
+    console.log(examInstance.examInstanceId);
   }
   getUserId(id: string) {
     this.userId = id;
+  }
+  takeExam() {
+
   }
 
 }

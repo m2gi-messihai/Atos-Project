@@ -33,6 +33,8 @@ import { ExamPageComponent } from './exam-page/exam-page.component'
 import { RoleFormComponent } from './role-form/role-form.component';
 import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-popup.component';
 import { AssignExamToStudentComponent } from './assign-exam-to-student/assign-exam-to-student.component';
+import { TakeExamComponent } from './take-exam/take-exam.component';
+import { AssignedExamsComponent } from './assigned-exams/assigned-exams.component';
 
 
 
@@ -51,6 +53,8 @@ import { AssignExamToStudentComponent } from './assign-exam-to-student/assign-ex
     RoleFormComponent,
     AddQuestionsPopupComponent,
     AssignExamToStudentComponent,
+    TakeExamComponent,
+    AssignedExamsComponent,
 
   ],
   imports: [
