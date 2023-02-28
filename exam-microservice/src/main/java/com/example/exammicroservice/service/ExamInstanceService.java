@@ -1,19 +1,23 @@
 package com.example.exammicroservice.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.exammicroservice.dto.QuestionDto;
+import com.example.exammicroservice.dto.ExamInstanceDto;
 import com.example.exammicroservice.dto.GetAssignedExamNameDto;
 import com.example.exammicroservice.model.ExamDefinition;
 import com.example.exammicroservice.model.ExamInstance;
 import com.example.exammicroservice.model.ExamQuestion;
+import com.example.exammicroservice.model.StatusEnum;
 import com.example.exammicroservice.repository.ExamDefinitionRepository;
 import com.example.exammicroservice.repository.ExamInstanceRepository;
 import com.example.exammicroservice.webclientApi.WebClientApi;
@@ -27,6 +31,8 @@ public class ExamInstanceService {
     private ExamDefinitionRepository examDefinitionRepository;
     @Autowired
     private WebClientApi webClientApi;
+    @Autowired
+    private ModelMapper modelMapper;
 
     public ExamInstance assignExamToStudent(ExamInstance examInstance) {
 
@@ -42,6 +48,7 @@ public class ExamInstanceService {
                         getQuestions(examIds[i]).getExpectedTime(), null);
                 examQuestions.add(examQuestion);
             }
+            examInstance.setStatus(StatusEnum.ASSIGNED);
             examInstance.setExamQuestions(examQuestions);
         }
         return examInstanceRepository.save(examInstance);
@@ -69,6 +76,20 @@ public class ExamInstanceService {
 
         }
         return getAssignedExamNameDtos;
+
+    }
+
+    public ExamInstance setStartedTime(String id, String date) {
+        Optional<ExamInstance> examInstance = examInstanceRepository.findById(id);
+        if (examInstance.isPresent()) {
+
+            examInstance.get().setStartedTime(date);
+            ExamInstanceDto examInstanceDto = modelMapper.map(examInstance.get(), ExamInstanceDto.class);
+            return examInstanceRepository.save(examInstance.get());
+
+        } else {
+            return null;
+        }
 
     }
 

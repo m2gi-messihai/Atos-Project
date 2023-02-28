@@ -1,9 +1,13 @@
 package com.example.exammicroservice.model;
 
+import java.time.LocalDate;
+
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.example.exammicroservice.dto.ExamQuestionDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +26,7 @@ public class ExamInstance {
     GeneratedLink generatedLink;//
     String createdBy;//
     String takenBy;
-    String status;// take exam set initially null or assigned
+    StatusEnum status;// take exam set initially null or assigned
     List<ExamQuestion> examQuestions;// take exam
 
 }

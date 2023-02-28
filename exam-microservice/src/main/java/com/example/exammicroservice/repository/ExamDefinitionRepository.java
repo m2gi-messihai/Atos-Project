@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
+import com.example.exammicroservice.dto.ExamDefinitionDto;
 import com.example.exammicroservice.model.ExamDefinition;
 
 public interface ExamDefinitionRepository extends MongoRepository<ExamDefinition, String> {

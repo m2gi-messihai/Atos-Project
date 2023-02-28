@@ -37,5 +37,12 @@ export class ExamInstanceService {
         })
       );
   }
+  startExam(id: string) {
+    return this.http
+      .patch<ExamInstance>(
+        this.API + "/startExam/" + id, new Date()
+      );
+
+  }
 
 }

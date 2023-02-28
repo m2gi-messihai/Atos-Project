@@ -5,7 +5,13 @@
       <mat-card>
         <div class="examItem">
           {{ i + 1 }}){{ exam.examDefinitionName }}
-          <button mat-raised-button color="primary">Start Exam</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="startExam(exam.examInstanceId)"
+          >
+            Start Exam
+          </button>
         </div>
       </mat-card>
     </li>

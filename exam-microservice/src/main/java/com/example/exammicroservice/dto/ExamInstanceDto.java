@@ -1,8 +1,10 @@
 package com.example.exammicroservice.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.exammicroservice.model.GeneratedLink;
+import com.example.exammicroservice.model.StatusEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,14 +16,14 @@ public class ExamInstanceDto {
 
     String examInstanceId;
     String examDefinitionId;
-    String startedTime;
+    LocalDate startedTime;
     String endTime;
     String duration;
     String completionTime;
     GeneratedLink generatedLink;
     String createdBy;
     String takenBy;
-    String status;
+    StatusEnum status;
     List<ExamQuestionDto> examQuestions;
 
 }

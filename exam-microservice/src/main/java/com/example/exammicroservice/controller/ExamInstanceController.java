@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +43,11 @@ public class ExamInstanceController {
     public List<GetAssignedExamNameDto> getAssignedExamName() {
         return examInstanceService.getAssignedExamName();
 
+    }
+
+    @PatchMapping("/startExam/{id}")
+    public ExamInstance startExam(@PathVariable String id, @RequestBody String date) {
+        return examInstanceService.setStartedTime(id, date);
     }
 
 }
