@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { ExamInstance } from '../models/ExamInstance';
 import { ExamQuestion } from '../models/ExamQuestion';
 import { GeneratedLink } from '../models/GeneratedLink';
+import { GetAssignedExamNameDto } from '../models/GetAssignedExam';
 
 @Injectable({
   providedIn: 'root'
@@ -19,28 +20,20 @@ export class ExamInstanceService {
         examInstance
       );
   }
-  takeExam(examInstanceId: string, examQuestion: ExamQuestion[]) {
-    return this.http
-      .patch<ExamInstance>(
-        this.API + "/" + examInstanceId + "/takeExam",
-        examQuestion
-      );
-
-  }
   getAssignedExams() {
     return this.http
-      .get<{ [key: string]: ExamInstance }>(
+      .get<{ [key: string]: GetAssignedExamNameDto }>(
         this.API + "/assignedExams"
       )
       .pipe(
         map((res) => {
-          const examInstances = [];
+          const assignedExams = [];
           for (const key in res) {
             if (res.hasOwnProperty(key)) {
-              examInstances.push({ ...res[key], id: key });
+              assignedExams.push({ ...res[key], id: key });
             }
           }
-          return examInstances;
+          return assignedExams;
         })
       );
   }

@@ -1,5 +1,7 @@
 package com.example.exammicroservice.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,7 +22,7 @@ public class ExamInstance {
     GeneratedLink generatedLink;//
     String createdBy;//
     String takenBy;
-    String status;// take exam
-    ExamQuestion[] examQuestions;// take exam
+    String status;// take exam set initially null or assigned
+    List<ExamQuestion> examQuestions;// take exam
 
 }
