@@ -1,0 +1,13 @@
+.examQuestionCard {
+    width: 70%;
+    margin: auto;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+}
+
+.answer {
+    padding: 5px;
+}

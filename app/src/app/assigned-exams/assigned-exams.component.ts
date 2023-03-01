@@ -25,7 +25,8 @@ export class AssignedExamsComponent implements OnInit {
     })
   }
   startExam(id: string) {
-    this.examInstanceService.startExam(id).subscribe();
+    this.router.navigate([`assignedExam/${id}`])
+
 
   }
 

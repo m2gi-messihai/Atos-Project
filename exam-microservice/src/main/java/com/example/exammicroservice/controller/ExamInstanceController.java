@@ -50,4 +50,14 @@ public class ExamInstanceController {
         return examInstanceService.setStartedTime(id, date);
     }
 
+    @GetMapping("/assignedExams/{id}")
+    public GetAssignedExamNameDto getAssignedExamById(@PathVariable String id) {
+        return examInstanceService.getAssignedExamById(id);
+    }
+
+    @GetMapping("/assignedExams/{examId}/questions/{questionId}")
+    public QuestionDto getQuestionForExam(@PathVariable String examId, @PathVariable String questionId) {
+        return examInstanceService.getQuestionForExam(examId, questionId);
+    }
+
 }

@@ -35,6 +35,7 @@ import { AddQuestionsPopupComponent } from './add-questions-popup/add-questions-
 import { AssignExamToStudentComponent } from './assign-exam-to-student/assign-exam-to-student.component';
 import { TakeExamComponent } from './take-exam/take-exam.component';
 import { AssignedExamsComponent } from './assigned-exams/assigned-exams.component';
+import { ExamInitialPageComponent } from './exam-initial-page/exam-initial-page.component';
 
 
 
@@ -55,6 +56,7 @@ import { AssignedExamsComponent } from './assigned-exams/assigned-exams.componen
     AssignExamToStudentComponent,
     TakeExamComponent,
     AssignedExamsComponent,
+    ExamInitialPageComponent,
 
   ],
   imports: [

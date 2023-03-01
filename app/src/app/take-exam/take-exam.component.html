@@ -1,1 +1,19 @@
-<p>take-exam works!</p>
+<mat-card class="examQuestionCard" *ngIf="question">
+  <mat-card-header>
+    <mat-card-title>{{ question.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-radio-group class="answers">
+      <mat-radio-button
+        *ngFor="let answer of question.answers"
+        [value]="answer"
+        class="answer"
+      >
+        {{ answer.name }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button>NEXT</button>
+  </mat-card-actions>
+</mat-card>

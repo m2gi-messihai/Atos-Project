@@ -71,11 +71,39 @@ public class ExamInstanceService {
                     .findById(assignedExams.get(i).getExamDefinitionId());
             GetAssignedExamNameDto getAssignedExamNameDto = new GetAssignedExamNameDto(
                     assignedExams.get(i).getExamInstanceId(), examDefinition.get().getName(),
-                    assignedExams.get(i).getDuration());
+                    assignedExams.get(i).getDuration(), null);
             getAssignedExamNameDtos.add(getAssignedExamNameDto);
 
         }
         return getAssignedExamNameDtos;
+
+    }
+
+    public QuestionDto getQuestionForExam(String examId, String questionId) {
+        Optional<ExamInstance> examInstance = examInstanceRepository.findById(examId);
+        for (int i = 0; i < examInstance.get().getExamQuestions().size(); i++) {
+            if (examInstance.get().getExamQuestions().get(i).getQuestionId() == questionId)
+                break;
+        }
+        return getQuestions(questionId);
+    }
+
+    public GetAssignedExamNameDto getAssignedExamById(String id) {
+        List<String> questions = new ArrayList<>();
+        GetAssignedExamNameDto getAssignedExamNameDto = new GetAssignedExamNameDto();
+        Optional<ExamInstance> examInstance = examInstanceRepository.findById(id);
+        if (examInstance.isPresent()) {
+            Optional<ExamDefinition> examDefinition = examDefinitionRepository
+                    .findById(examInstance.get().getExamDefinitionId());
+            if (examDefinition.isPresent()) {
+                for (int i = 0; i < examDefinition.get().getQuestionsIds().length; i++) {
+                    questions.add(examDefinition.get().getQuestionsIds()[i]);
+                }
+                getAssignedExamNameDto = new GetAssignedExamNameDto(examInstance.get().getExamInstanceId(),
+                        examDefinition.get().getName(), examInstance.get().getDuration(), questions);
+            }
+        }
+        return getAssignedExamNameDto;
 
     }
 
@@ -90,7 +118,7 @@ public class ExamInstanceService {
         } else {
             return null;
         }
-
     }
+    // public getExamQuestionById(String id, )
 
 }

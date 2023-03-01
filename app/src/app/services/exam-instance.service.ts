@@ -5,6 +5,7 @@ import { ExamInstance } from '../models/ExamInstance';
 import { ExamQuestion } from '../models/ExamQuestion';
 import { GeneratedLink } from '../models/GeneratedLink';
 import { GetAssignedExamNameDto } from '../models/GetAssignedExam';
+import { Question } from '../models/Question';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,17 @@ export class ExamInstanceService {
         this.API + "/startExam/" + id, new Date()
       );
 
+  }
+  getAssignedExamById(id: string) {
+    return this.http
+      .get<GetAssignedExamNameDto>(
+        this.API + "/assignedExams/" + id
+      );
+  }
+  getQuestionForExam(examId: string, questionId: string) {
+    return this.http.get<Question>(
+      this.API + "/assignedExams/" + examId + "/questions/" + questionId
+    )
   }
 
 }

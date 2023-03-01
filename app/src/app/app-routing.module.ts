@@ -4,6 +4,7 @@ import { AddQuestionComponent } from './add-question/add-question.component';
 import { AssignExamToStudentComponent } from './assign-exam-to-student/assign-exam-to-student.component';
 import { AssignedExamsComponent } from './assigned-exams/assigned-exams.component';
 import { ExamFormComponent } from './exam-form/exam-form.component';
+import { ExamInitialPageComponent } from './exam-initial-page/exam-initial-page.component';
 
 import { ExamPageComponent } from './exam-page/exam-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -21,7 +22,8 @@ const routes: Routes = [{ path: '', component: HomePageComponent },
 { path: 'assignedExams', component: AssignedExamsComponent },
 { path: ":examId/assignExam", component: AssignExamToStudentComponent },
 { path: ":examId", component: ExamPageComponent },
-{ path: "takeExam/:id", component: TakeExamComponent },
+{ path: "assignedExam/:id", component: ExamInitialPageComponent },
+{ path: "assignedExam/:examId/questions/:questionId", component: TakeExamComponent },
 
 ];
 

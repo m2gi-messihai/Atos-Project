@@ -1,5 +1,7 @@
 package com.example.exammicroservice.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +13,6 @@ public class GetAssignedExamNameDto {
     String examInstanceId;
     String examDefinitionName;
     String examDuration;
+    List<String> questionsIds;
 
 }
