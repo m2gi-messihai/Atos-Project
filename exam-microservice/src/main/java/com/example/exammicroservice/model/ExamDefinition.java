@@ -1,5 +1,7 @@
 package com.example.exammicroservice.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,5 +17,5 @@ public class ExamDefinition {
     private String examId;
     private String name;
     private String passingScore;
-    private String[] questionsIds;
+    private List<String> questionsIds;
 }

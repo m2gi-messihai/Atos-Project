@@ -22,7 +22,7 @@ public class ExamDefinitionService {
         return examDefinitionRepository.save(examDefinition);
     };
 
-    public ExamDefinition addNewQuestion(String id, String[] questionId) {
+    public ExamDefinition addNewQuestion(String id, List<String> questionId) {
         Optional<ExamDefinition> existingExam = examDefinitionRepository.findById(id);
         if (existingExam.isPresent()) {
             existingExam.get().setQuestionsIds(questionId);

@@ -14,6 +14,13 @@
     </mat-radio-group>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-button>NEXT</button>
+    <button
+      mat-button
+      (click)="nextQuestion()"
+      *ngIf="this.questionsIds?.length !== 1"
+    >
+      NEXT
+    </button>
+    <button mat-button *ngIf="this.questionsIds?.length === 1">SUBMIT</button>
   </mat-card-actions>
 </mat-card>

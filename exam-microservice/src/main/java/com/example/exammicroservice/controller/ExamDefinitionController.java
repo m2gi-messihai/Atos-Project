@@ -38,7 +38,7 @@ public class ExamDefinitionController {
     }
 
     @PatchMapping("/{id}")
-    public ExamDefinitionDto addNewAnswer(@PathVariable String id, @RequestBody String[] questionsIds) {
+    public ExamDefinitionDto addNewAnswer(@PathVariable String id, @RequestBody List<String> questionsIds) {
         ExamDefinition examDefinition = examDefinitionService.addNewQuestion(id, questionsIds);
         return modelMapper.map(examDefinition, ExamDefinitionDto.class);
 

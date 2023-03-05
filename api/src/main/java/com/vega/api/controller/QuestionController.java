@@ -44,6 +44,11 @@ public class QuestionController {
         return questionService.createQuestion(question);
     }
 
+    @GetMapping("/examQuestions")
+    public List<Question> getAllQuestionsByids(@RequestParam List<String> ids) {
+        return questionService.getQuestionsByIds(ids);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteQuestion(@PathVariable String id) {
         log.debug("id equal " + id);

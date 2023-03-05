@@ -38,14 +38,16 @@ public class ExamInstanceService {
 
         String examDefinitionId = examInstance.getExamDefinitionId();
         List<ExamQuestion> examQuestions = new ArrayList<>();
-        Optional<ExamDefinition> examDefinition = examDefinitionRepository.findById(examDefinitionId);
+
+        Optional<ExamDefinition> examDefinition = examDefinitionRepository
+                .findById(examDefinitionId);
         if (examDefinition.isPresent()) {
-            String[] examIds = examDefinition.get().getQuestionsIds();
-
-            for (int i = 0; i < examIds.length; i++) {
-
-                ExamQuestion examQuestion = new ExamQuestion(getQuestions(examIds[i]).getKey(), null,
-                        getQuestions(examIds[i]).getExpectedTime(), null);
+            List<String> examIds = examDefinition.get().getQuestionsIds();
+            List<QuestionDto> questions = getQuestionsByIds(examIds);
+            for (int i = 0; i < examIds.size(); i++) {
+                ExamQuestion examQuestion = new ExamQuestion(getQuestions(examIds.get(i))
+                        .getKey(), null,
+                        getQuestions(examIds.get(i)).getExpectedTime(), null);
                 examQuestions.add(examQuestion);
             }
             examInstance.setStatus(StatusEnum.ASSIGNED);
@@ -53,9 +55,14 @@ public class ExamInstanceService {
         }
         return examInstanceRepository.save(examInstance);
     }
+    // get question tak all questionsIds and retur all questionsDetails
 
     public QuestionDto getQuestions(String id) {
         return webClientApi.getQuestionById(id);
+    }
+
+    public List<QuestionDto> getQuestionsByIds(List<String> ids) {
+        return webClientApi.getQuestionsByIds(ids);
     }
 
     public List<ExamInstance> getAssignedExam() {
@@ -96,8 +103,8 @@ public class ExamInstanceService {
             Optional<ExamDefinition> examDefinition = examDefinitionRepository
                     .findById(examInstance.get().getExamDefinitionId());
             if (examDefinition.isPresent()) {
-                for (int i = 0; i < examDefinition.get().getQuestionsIds().length; i++) {
-                    questions.add(examDefinition.get().getQuestionsIds()[i]);
+                for (int i = 0; i < examDefinition.get().getQuestionsIds().size(); i++) {
+                    questions.add(examDefinition.get().getQuestionsIds().get(i));
                 }
                 getAssignedExamNameDto = new GetAssignedExamNameDto(examInstance.get().getExamInstanceId(),
                         examDefinition.get().getName(), examInstance.get().getDuration(), questions);

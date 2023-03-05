@@ -6,6 +6,7 @@ import { ExamQuestion } from '../models/ExamQuestion';
 import { GeneratedLink } from '../models/GeneratedLink';
 import { GetAssignedExamNameDto } from '../models/GetAssignedExam';
 import { Question } from '../models/Question';
+import * as dayjs from 'dayjs'
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class ExamInstanceService {
   startExam(id: string) {
     return this.http
       .patch<ExamInstance>(
-        this.API + "/startExam/" + id, new Date()
+        this.API + "/startExam/" + id, dayjs().format("DD/MM/YY,HH:mm")
       );
 
   }

@@ -1,5 +1,6 @@
 package com.vega.api.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -29,6 +30,10 @@ public class QuestionService {
 
     public List<Question> list() {
         return questionRepository.findAll();
+    }
+
+    public List<Question> getQuestionsByIds(List<String> ids) {
+        return questionRepository.findAllById(ids);
     }
 
     public Optional<Question> read(String id) {
