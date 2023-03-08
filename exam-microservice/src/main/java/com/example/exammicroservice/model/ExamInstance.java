@@ -1,20 +1,18 @@
 package com.example.exammicroservice.model;
 
-import java.time.LocalDate;
-
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.exammicroservice.dto.ExamQuestionDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(collection = "ExamInstance")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ExamInstance {
     @Id
     String examInstanceId;

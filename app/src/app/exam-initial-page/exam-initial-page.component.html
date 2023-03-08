@@ -2,15 +2,13 @@
   <mat-card-header>
     <mat-card-title>{{ assignedExam.examDefinitionName }}</mat-card-title>
     <mat-card-subtitle
-      >Duration: {{ assignedExam.examDuration }} minutes</mat-card-subtitle
+      >Duration: {{ assignedExam.examDuration }} seconds</mat-card-subtitle
     >
   </mat-card-header>
   <mat-card-actions align="end">
     <button
       mat-button
-      (click)="
-        startExam(assignedExam.examInstanceId, assignedExam.questionsIds)
-      "
+      (click)="startExam(assignedExam.examInstanceId, assignedExam.questions)"
     >
       START EXAM
     </button>

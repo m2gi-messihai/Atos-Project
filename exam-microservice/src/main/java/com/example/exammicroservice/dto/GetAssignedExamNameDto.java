@@ -13,6 +13,7 @@ public class GetAssignedExamNameDto {
     String examInstanceId;
     String examDefinitionName;
     String examDuration;
-    List<String> questionsIds;
+    String startTime;
+    List<ExamQuestionDto> questions;
 
 }

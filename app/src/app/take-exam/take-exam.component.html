@@ -9,6 +9,8 @@
         *ngFor="let answer of question.answers"
         [value]="answer"
         class="answer"
+        [disabled]="examState"
+        (change)="answerValue($event)"
       >
         {{ answer.name }}
       </mat-radio-button>
@@ -18,14 +20,14 @@
     <button
       mat-button
       (click)="nextQuestion()"
-      *ngIf="this.questionsIds?.length !== 1"
+      *ngIf="this.questions?.length !== 1"
     >
       NEXT
     </button>
     <button
       mat-button
       (click)="submitExam()"
-      *ngIf="this.questionsIds?.length === 1"
+      *ngIf="this.questions?.length === 1"
     >
       SUBMIT
     </button>

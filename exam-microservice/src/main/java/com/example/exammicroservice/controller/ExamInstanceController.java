@@ -18,6 +18,7 @@ import com.example.exammicroservice.dto.GetAssignedExamNameDto;
 import com.example.exammicroservice.dto.QuestionDto;
 import com.example.exammicroservice.model.ExamInstance;
 import com.example.exammicroservice.service.ExamInstanceService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -46,8 +47,8 @@ public class ExamInstanceController {
     }
 
     @PatchMapping("/startExam/{id}")
-    public ExamInstance startExam(@PathVariable String id, @RequestBody String date) {
-        return examInstanceService.setStartedTime(id, date);
+    public ExamInstance startExam(@PathVariable String id, @RequestBody ObjectNode json) {
+        return examInstanceService.setStartedTime(id, json);
     }
 
     @GetMapping("/assignedExams/{id}")
@@ -58,6 +59,17 @@ public class ExamInstanceController {
     @GetMapping("/assignedExams/{examId}/questions/{questionId}")
     public QuestionDto getQuestionForExam(@PathVariable String examId, @PathVariable String questionId) {
         return examInstanceService.getQuestionForExam(examId, questionId);
+    }
+
+    @PatchMapping("/assignedExams/{examId}/questions/{questionId}")
+    public ExamInstance takeExam(@PathVariable String examId, @PathVariable String questionId,
+            @RequestBody ObjectNode json) {
+        return examInstanceService.takeExam(examId, questionId, json);
+    }
+
+    @PostMapping("/assignedExams/{examId}")
+    public ExamInstance submitExam(@PathVariable String examId, @RequestBody String submitTime) {
+        return examInstanceService.submitExam(examId, submitTime);
     }
 
 }

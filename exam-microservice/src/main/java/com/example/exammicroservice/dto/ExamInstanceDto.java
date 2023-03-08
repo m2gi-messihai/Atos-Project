@@ -16,7 +16,7 @@ public class ExamInstanceDto {
 
     String examInstanceId;
     String examDefinitionId;
-    LocalDate startedTime;
+    String startedTime;
     String endTime;
     String duration;
     String completionTime;

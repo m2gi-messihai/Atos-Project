@@ -1,6 +1,5 @@
 package com.example.exammicroservice.service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,14 +12,17 @@ import org.springframework.stereotype.Service;
 
 import com.example.exammicroservice.dto.QuestionDto;
 import com.example.exammicroservice.dto.ExamInstanceDto;
+import com.example.exammicroservice.dto.ExamQuestionDto;
 import com.example.exammicroservice.dto.GetAssignedExamNameDto;
 import com.example.exammicroservice.model.ExamDefinition;
 import com.example.exammicroservice.model.ExamInstance;
 import com.example.exammicroservice.model.ExamQuestion;
+import com.example.exammicroservice.model.GeneratedLink;
 import com.example.exammicroservice.model.StatusEnum;
 import com.example.exammicroservice.repository.ExamDefinitionRepository;
 import com.example.exammicroservice.repository.ExamInstanceRepository;
 import com.example.exammicroservice.webclientApi.WebClientApi;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Service
 public class ExamInstanceService {
@@ -38,7 +40,6 @@ public class ExamInstanceService {
 
         String examDefinitionId = examInstance.getExamDefinitionId();
         List<ExamQuestion> examQuestions = new ArrayList<>();
-
         Optional<ExamDefinition> examDefinition = examDefinitionRepository
                 .findById(examDefinitionId);
         if (examDefinition.isPresent()) {
@@ -55,7 +56,6 @@ public class ExamInstanceService {
         }
         return examInstanceRepository.save(examInstance);
     }
-    // get question tak all questionsIds and retur all questionsDetails
 
     public QuestionDto getQuestions(String id) {
         return webClientApi.getQuestionById(id);
@@ -78,7 +78,7 @@ public class ExamInstanceService {
                     .findById(assignedExams.get(i).getExamDefinitionId());
             GetAssignedExamNameDto getAssignedExamNameDto = new GetAssignedExamNameDto(
                     assignedExams.get(i).getExamInstanceId(), examDefinition.get().getName(),
-                    assignedExams.get(i).getDuration(), null);
+                    assignedExams.get(i).getDuration(), null, null);
             getAssignedExamNameDtos.add(getAssignedExamNameDto);
 
         }
@@ -96,36 +96,83 @@ public class ExamInstanceService {
     }
 
     public GetAssignedExamNameDto getAssignedExamById(String id) {
-        List<String> questions = new ArrayList<>();
+        List<ExamQuestionDto> questions = new ArrayList<>();
+        Integer sumDuration = 0;
         GetAssignedExamNameDto getAssignedExamNameDto = new GetAssignedExamNameDto();
         Optional<ExamInstance> examInstance = examInstanceRepository.findById(id);
+        ExamInstanceDto examInstanceDto = modelMapper.map(examInstance, ExamInstanceDto.class);
         if (examInstance.isPresent()) {
             Optional<ExamDefinition> examDefinition = examDefinitionRepository
                     .findById(examInstance.get().getExamDefinitionId());
             if (examDefinition.isPresent()) {
-                for (int i = 0; i < examDefinition.get().getQuestionsIds().size(); i++) {
-                    questions.add(examDefinition.get().getQuestionsIds().get(i));
+                for (int i = 0; i < examInstanceDto.getExamQuestions().size(); i++) {
+                    questions.add(examInstanceDto.getExamQuestions().get(i));
                 }
-                getAssignedExamNameDto = new GetAssignedExamNameDto(examInstance.get().getExamInstanceId(),
-                        examDefinition.get().getName(), examInstance.get().getDuration(), questions);
+                for (int i = 0; i < questions.size(); i++) {
+                    sumDuration = sumDuration + Integer.parseInt(questions.get(i).getDisplayTime());
+
+                }
+                examInstanceDto.setDuration(sumDuration.toString());
+
+                examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
+
+                getAssignedExamNameDto = new GetAssignedExamNameDto(examInstanceDto.getExamInstanceId(),
+                        examDefinition.get().getName(), examInstance.get().getStartedTime(),
+                        examInstanceDto.getStartedTime(), questions);
             }
         }
         return getAssignedExamNameDto;
 
     }
 
-    public ExamInstance setStartedTime(String id, String date) {
+    public ExamInstance setStartedTime(String id, ObjectNode json) {
+        String date = json.get("startTime").asText();
+        String url = json.get("url").asText();
+        GeneratedLink generatedLink;
         Optional<ExamInstance> examInstance = examInstanceRepository.findById(id);
+        ExamInstanceDto examInstanceDto = modelMapper.map(examInstance.get(), ExamInstanceDto.class);
         if (examInstance.isPresent()) {
+            examInstanceDto.setStartedTime(date);
+            generatedLink = examInstanceDto.getGeneratedLink();
+            generatedLink.setUrl(url);
+            examInstanceDto.setGeneratedLink(generatedLink);
 
-            examInstance.get().setStartedTime(date);
-            ExamInstanceDto examInstanceDto = modelMapper.map(examInstance.get(), ExamInstanceDto.class);
-            return examInstanceRepository.save(examInstance.get());
-
+            return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
         } else {
             return null;
         }
     }
-    // public getExamQuestionById(String id, )
 
+    public ExamInstance takeExam(String examId, String questionId, ObjectNode json) {
+        String selectedAnswer = json.get("selectedAnswer").asText();
+        String answerTime = json.get("answerTime").asText();
+        Optional<ExamInstance> examInstance = examInstanceRepository.findById(examId);
+        if (examInstance.isPresent()) {
+            ExamInstanceDto examInstanceDto = modelMapper.map(examInstance.get(), ExamInstanceDto.class);
+            for (int i = 0; i < examInstanceDto.getExamQuestions().size(); i++) {
+
+                if (examInstanceDto.getExamQuestions().get(i).getQuestionId().equals(questionId)) {
+                    examInstanceDto.getExamQuestions().get(i).setSelectedAnswerId(selectedAnswer);
+                    examInstanceDto.getExamQuestions().get(i).setAnswerTime(answerTime);
+                }
+            }
+            examInstanceDto.setStatus(StatusEnum.PRESENT);
+            return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
+        } else {
+            return null;
+        }
+    }
+
+    public ExamInstance submitExam(String examId, String completionTime) {
+        Optional<ExamInstance> examInstance = examInstanceRepository.findById(examId);
+        if (examInstance.isPresent()) {
+            ExamInstanceDto examInstanceDto = modelMapper.map(examInstance
+                    .get(), ExamInstanceDto.class);
+            examInstanceDto.setEndTime(completionTime);
+
+            return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
+        } else {
+            return null;
+        }
+    }
 }

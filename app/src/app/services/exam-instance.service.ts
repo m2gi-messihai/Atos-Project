@@ -39,10 +39,13 @@ export class ExamInstanceService {
         })
       );
   }
-  startExam(id: string) {
+  startExam(id: string, url: string) {
     return this.http
       .patch<ExamInstance>(
-        this.API + "/startExam/" + id, dayjs().format("DD/MM/YY,HH:mm")
+        this.API + "/startExam/" + id, {
+        "startTime": dayjs().format("DD/MM/YY,HH:mm"),
+        "url": url
+      }
       );
 
   }
@@ -55,6 +58,19 @@ export class ExamInstanceService {
   getQuestionForExam(examId: string, questionId: string) {
     return this.http.get<Question>(
       this.API + "/assignedExams/" + examId + "/questions/" + questionId
+    )
+  }
+  takeExam(examId: string, questionId: string, selectedAnswer: string) {
+    return this.http.patch<ExamQuestion>(
+      this.API + "/assignedExams/" + examId + "/questions/" + questionId, {
+      "selectedAnswer": selectedAnswer,
+      "answerTime": dayjs().format("HH:mm")
+    }
+    )
+  }
+  submitExam(examId: string, endTime: string) {
+    return this.http.post<ExamQuestion>(
+      this.API + "/assignedExams/" + examId, endTime
     )
   }
 
