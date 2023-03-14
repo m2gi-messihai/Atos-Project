@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { url } from 'inspector';
 import { map, Observable, startWith } from 'rxjs';
 import { ExamInstance } from '../models/ExamInstance';
 import { GeneratedLink } from '../models/GeneratedLink';
@@ -27,12 +28,12 @@ export class AssignExamToStudentComponent implements OnInit {
   teachersControl = new FormControl('');
   filteredStudents: Observable<User[]> | null = null;
   filteredTeachers: Observable<User[]> | null = null;
+  url: string = "";
 
   constructor(private router: Router, private examInstanceService: ExamInstanceService, private userService: UserService, private route: ActivatedRoute, private fb: FormBuilder) {
+
     this.assignExamForm = this.fb.group({
       duration: ['', [Validators.required]],
-
-
 
     });
     this.generatedLinkForm = this.fb.group({
@@ -43,6 +44,8 @@ export class AssignExamToStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.url = window.location.href;
+    console.log(this.url);
     this.examId = this.route.snapshot.paramMap.get('examId');
     console.log(this.examId);
     this.userService.getStudents().subscribe((res) => {
@@ -87,6 +90,7 @@ export class AssignExamToStudentComponent implements OnInit {
       console.log(this.generatedLinkForm.value.scheduledTimeFrom);
       examInstance.generatedLink.scheduledTimeFrom = this.generatedLinkForm.value.scheduledTimeFrom;
       examInstance.generatedLink.scheduledTimeTo = this.generatedLinkForm.value.scheduledTimeTo;
+      examInstance.generatedLink.url = this.url;
     }
     this.examInstanceService.assignExam(examInstance).subscribe((res) => {
       console.log(res);

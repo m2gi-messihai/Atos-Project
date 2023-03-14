@@ -29,7 +29,7 @@ export class ExamInitialPageComponent implements OnInit {
     }
   }
   startExam(examId: string, questions: ExamQuestion[]) {
-    this.examInstanceService.startExam(examId, this.url).subscribe((res) => {
+    this.examInstanceService.startExam(examId).subscribe((res) => {
       this.router.navigate([`assignedExam/${examId}/questions/${questions[0].questionId}`]);
     });
   }

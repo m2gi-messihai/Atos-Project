@@ -1,19 +1,24 @@
 package com.example.exammicroservice.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.management.Notification;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.exammicroservice.dto.QuestionDto;
 import com.example.exammicroservice.dto.ExamInstanceDto;
 import com.example.exammicroservice.dto.ExamQuestionDto;
 import com.example.exammicroservice.dto.GetAssignedExamNameDto;
+import com.example.exammicroservice.dto.NotificationDto;
 import com.example.exammicroservice.model.ExamDefinition;
 import com.example.exammicroservice.model.ExamInstance;
 import com.example.exammicroservice.model.ExamQuestion;
@@ -26,6 +31,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Service
 public class ExamInstanceService {
+    private KafkaTemplate<String, Object> kafkaTemplate;
     private Logger log = LoggerFactory.getLogger(ExamInstanceService.class);
     @Autowired
     private ExamInstanceRepository examInstanceRepository;
@@ -36,8 +42,11 @@ public class ExamInstanceService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ExamInstance assignExamToStudent(ExamInstance examInstance) {
+    public ExamInstanceService(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
+    public ExamInstance assignExamToStudent(ExamInstance examInstance) {
         String examDefinitionId = examInstance.getExamDefinitionId();
         List<ExamQuestion> examQuestions = new ArrayList<>();
         Optional<ExamDefinition> examDefinition = examDefinitionRepository
@@ -54,6 +63,10 @@ public class ExamInstanceService {
             examInstance.setStatus(StatusEnum.ASSIGNED);
             examInstance.setExamQuestions(examQuestions);
         }
+        kafkaTemplate.send("notification", examInstance.getExamInstanceId(),
+                new NotificationDto(examInstance.getTakenBy(),
+                        new Date().toString(), examInstance.getGeneratedLink().getUrl(),
+                        "Exam is assgned"));
         return examInstanceRepository.save(examInstance);
     }
 
@@ -127,15 +140,11 @@ public class ExamInstanceService {
 
     public ExamInstance setStartedTime(String id, ObjectNode json) {
         String date = json.get("startTime").asText();
-        String url = json.get("url").asText();
-        GeneratedLink generatedLink;
+
         Optional<ExamInstance> examInstance = examInstanceRepository.findById(id);
         ExamInstanceDto examInstanceDto = modelMapper.map(examInstance.get(), ExamInstanceDto.class);
         if (examInstance.isPresent()) {
             examInstanceDto.setStartedTime(date);
-            generatedLink = examInstanceDto.getGeneratedLink();
-            generatedLink.setUrl(url);
-            examInstanceDto.setGeneratedLink(generatedLink);
 
             return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
         } else {
@@ -169,6 +178,10 @@ public class ExamInstanceService {
             ExamInstanceDto examInstanceDto = modelMapper.map(examInstance
                     .get(), ExamInstanceDto.class);
             examInstanceDto.setEndTime(completionTime);
+            kafkaTemplate.send("notification", examInstanceDto.getExamInstanceId(),
+                    new NotificationDto(examInstanceDto.getTakenBy(),
+                            new Date().toString(), examInstanceDto.getGeneratedLink().getUrl(),
+                            "Exam is submitted"));
 
             return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
         } else {
