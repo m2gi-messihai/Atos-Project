@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.Notification;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.exammicroservice.dto.QuestionDto;
+import com.example.exammicroservice.dto.EventDto;
 import com.example.exammicroservice.dto.ExamInstanceDto;
 import com.example.exammicroservice.dto.ExamQuestionDto;
 import com.example.exammicroservice.dto.GetAssignedExamNameDto;
@@ -22,7 +21,7 @@ import com.example.exammicroservice.dto.NotificationDto;
 import com.example.exammicroservice.model.ExamDefinition;
 import com.example.exammicroservice.model.ExamInstance;
 import com.example.exammicroservice.model.ExamQuestion;
-import com.example.exammicroservice.model.GeneratedLink;
+import com.example.exammicroservice.model.NotificationTypeEnum;
 import com.example.exammicroservice.model.StatusEnum;
 import com.example.exammicroservice.repository.ExamDefinitionRepository;
 import com.example.exammicroservice.repository.ExamInstanceRepository;
@@ -64,9 +63,9 @@ public class ExamInstanceService {
             examInstance.setExamQuestions(examQuestions);
         }
         kafkaTemplate.send("notification", examInstance.getExamInstanceId(),
-                new NotificationDto(examInstance.getTakenBy(),
-                        new Date().toString(), examInstance.getGeneratedLink().getUrl(),
-                        "Exam is assgned"));
+                new EventDto(examInstance.getTakenBy(), new Date().toString(),
+                        examDefinition.get().getName(), examInstance.getGeneratedLink().getUrl(),
+                        NotificationTypeEnum.EXAM_ASSIGNMENT));
         return examInstanceRepository.save(examInstance);
     }
 
@@ -174,14 +173,18 @@ public class ExamInstanceService {
 
     public ExamInstance submitExam(String examId, String completionTime) {
         Optional<ExamInstance> examInstance = examInstanceRepository.findById(examId);
+
         if (examInstance.isPresent()) {
             ExamInstanceDto examInstanceDto = modelMapper.map(examInstance
                     .get(), ExamInstanceDto.class);
+            String examDefinitionId = examInstanceDto.getExamDefinitionId();
+            Optional<ExamDefinition> examDefinition = examDefinitionRepository
+                    .findById(examDefinitionId);
             examInstanceDto.setEndTime(completionTime);
             kafkaTemplate.send("notification", examInstanceDto.getExamInstanceId(),
-                    new NotificationDto(examInstanceDto.getTakenBy(),
-                            new Date().toString(), examInstanceDto.getGeneratedLink().getUrl(),
-                            "Exam is submitted"));
+                    new EventDto(examInstanceDto.getTakenBy(), new Date().toString(),
+                            examDefinition.get().getName(), examInstanceDto.getGeneratedLink().getUrl(),
+                            NotificationTypeEnum.EXAM_SUBMISSION));
 
             return examInstanceRepository.save(modelMapper.map(examInstanceDto, ExamInstance.class));
         } else {

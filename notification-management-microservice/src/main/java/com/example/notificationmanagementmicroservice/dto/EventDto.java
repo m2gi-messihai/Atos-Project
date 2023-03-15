@@ -1,16 +1,19 @@
 package com.example.notificationmanagementmicroservice.dto;
 
+import com.example.notificationmanagementmicroservice.model.NotificationTypeEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDto {
+@NoArgsConstructor
+public class EventDto {
     String userId;
-    String timestanmp;
+    String timestamp;
+    String examName;
     String url;
-    String message;
+    NotificationTypeEnum eventType;
 
 }
