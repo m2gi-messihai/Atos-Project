@@ -10,6 +10,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
 
 import com.example.notificationmanagementmicroservice.dto.EventDto;
+import com.example.notificationmanagementmicroservice.dto.NotificationDto;
 import com.example.notificationmanagementmicroservice.service.NotificationService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,11 +24,11 @@ public class NotificationListener {
     private Logger log = LoggerFactory.getLogger(NotificationListener.class);
 
     @KafkaListener(topics = "notification", groupId = "notification")
-    @Payload
-    void listener(String event) throws JsonProcessingException {
+
+    NotificationDto listener(String event) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         log.debug("hello" + event);
         EventDto eventDto = objectMapper.readValue(event, EventDto.class);
-        notificationService.saveNotification(eventDto);
+        return notificationService.saveNotification(eventDto);
     }
 }

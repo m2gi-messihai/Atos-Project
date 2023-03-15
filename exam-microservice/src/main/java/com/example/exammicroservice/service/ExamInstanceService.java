@@ -62,7 +62,7 @@ public class ExamInstanceService {
             examInstance.setStatus(StatusEnum.ASSIGNED);
             examInstance.setExamQuestions(examQuestions);
         }
-        kafkaTemplate.send("notification", examInstance.getExamInstanceId(),
+        kafkaTemplate.send("notification",
                 new EventDto(examInstance.getTakenBy(), new Date().toString(),
                         examDefinition.get().getName(), examInstance.getGeneratedLink().getUrl(),
                         NotificationTypeEnum.EXAM_ASSIGNMENT));
@@ -181,7 +181,7 @@ public class ExamInstanceService {
             Optional<ExamDefinition> examDefinition = examDefinitionRepository
                     .findById(examDefinitionId);
             examInstanceDto.setEndTime(completionTime);
-            kafkaTemplate.send("notification", examInstanceDto.getExamInstanceId(),
+            kafkaTemplate.send("notification",
                     new EventDto(examInstanceDto.getTakenBy(), new Date().toString(),
                             examDefinition.get().getName(), examInstanceDto.getGeneratedLink().getUrl(),
                             NotificationTypeEnum.EXAM_SUBMISSION));

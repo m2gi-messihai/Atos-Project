@@ -1,5 +1,7 @@
 package com.example.exammicroservice.dto;
 
+import org.springframework.data.annotation.Id;
+
 import com.example.exammicroservice.model.NotificationTypeEnum;
 
 import lombok.AllArgsConstructor;

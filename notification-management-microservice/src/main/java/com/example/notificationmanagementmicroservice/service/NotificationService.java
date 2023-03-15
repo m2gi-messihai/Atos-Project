@@ -18,10 +18,11 @@ public class NotificationService {
     private ModelMapper modelMapper;
 
     public NotificationDto saveNotification(EventDto eventDto) {
-        NotificationDto notificationDto = new NotificationDto(eventDto.getUserId(), eventDto.getTimestamp(),
+        NotificationDto notificationDto = new NotificationDto(null, eventDto.getUserId(), eventDto.getTimestamp(),
                 eventDto.getUrl(), null);
         if (eventDto.getEventType() == NotificationTypeEnum.EXAM_ASSIGNMENT) {
             notificationDto.setMessage("you have been assigned " + eventDto.getExamName());
+
         } else if (eventDto.getEventType() == NotificationTypeEnum.EXAM_SUBMISSION) {
             notificationDto.setMessage("Exam " + eventDto.getExamName() + " has been submitted ");
         }
